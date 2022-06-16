@@ -179,20 +179,20 @@ namespace WindowsFormsApp7
             txb_namaMenu.Clear();
             txb_qty.Clear();
             pb_image.Image = null;
-            fun_read("SELECT tempOrder1.id, tempOrder1.menuId, MsMenu1.name NamaMenu, tempOrder1.qty Banyak, MsMenu1.carbo Carbo, MsMenu1.protein Protein, MsMenu1.price Harga, tempOrder1.total Total FROM tempOrder1 INNER JOIN MsMenu1 ON tempOrder1.menuId = MsMenu1.id; ", dgv_order);
+            fun_read("SELECT .id, .menuId, MsMenu.name NamaMenu, .qty Banyak, MsMenu.carbo Carbo, MsMenu.protein Protein, MsMenu.price Harga, .total Total FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id; ", dgv_order);
             dgv_order.Columns[0].Visible = false;
             dgv_order.Columns[1].Visible = false;
-            fun_setText("SELECT SUM(carbo) hasil FROM tempOrder1 INNER JOIN MsMenu1 ON tempOrder1.menuId = MsMenu1.id;", "Karbohidrat: ", label4, "hasil");
-            fun_setText("SELECT SUM(protein) hasil FROM tempOrder1 INNER JOIN MsMenu1 ON tempOrder1.menuId = MsMenu1.id;", "Protein: ", label5, "hasil");
-            fun_setText("SELECT SUM(total) hasil FROM tempOrder1 INNER JOIN MsMenu1 ON tempOrder1.menuId = MsMenu1.id;", "Total: ", label6, "hasil");
+            fun_setText("SELECT SUM(carbo) hasil FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id;", "Karbohidrat: ", label4, "hasil");
+            fun_setText("SELECT SUM(protein) hasil FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id;", "Protein: ", label5, "hasil");
+            fun_setText("SELECT SUM(total) hasil FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id;", "Total: ", label6, "hasil");
 
         }
 
         private void Form_Order_Load(object sender, EventArgs e)
         {
             
-            fun_read("SELECT id MenuId, name NamaMenu, price Harga, photo Photo, image Image, carbo Karbohidrat, protein Protein FROM MsMenu1", dgv_menu);
-            fun_read("SELECT tempOrder1.id orderid, tempOrder1.menuId menuId, MsMenu1.name NamaMenu, tempOrder1.qty Banyak, MsMenu1.carbo Carbo, MsMenu1.protein Protein, MsMenu1.price Harga, tempOrder1.total Total FROM tempOrder1 INNER JOIN MsMenu1 ON tempOrder1.menuId = MsMenu1.id; ", dgv_order);
+            fun_read("SELECT id MenuId, name NamaMenu, price Harga, photo Photo, image Image, carbo Karbohidrat, protein Protein FROM MsMenu", dgv_menu);
+            fun_read("SELECT .id orderid, .menuId menuId, MsMenu.name NamaMenu, .qty Banyak, MsMenu.carbo Carbo, MsMenu.protein Protein, MsMenu.price Harga, .total Total FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id; ", dgv_order);
             txb_menuId.Visible = false;
             dgv_menu.Columns[0].Visible = false;
             dgv_menu.Columns[3].Visible = false;
@@ -221,11 +221,11 @@ namespace WindowsFormsApp7
         {
             if (txb_cari.Text != "")
             {
-                fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu1 WHERE name='" + txb_cari.Text + "' ", dgv_menu);
+                fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu WHERE name='" + txb_cari.Text + "' ", dgv_menu);
             }
             else
             {
-                fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu1", dgv_menu);
+                fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu", dgv_menu);
             }
         }
 
@@ -235,18 +235,18 @@ namespace WindowsFormsApp7
             {
                 if (txb_cari.Text != "")
                 {
-                    fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu1 WHERE name='" + txb_cari.Text + "' ", dgv_menu);
+                    fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu WHERE name='" + txb_cari.Text + "' ", dgv_menu);
                 }
                 else
                 {
-                    fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu1", dgv_menu);
+                    fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu", dgv_menu);
                 }
             }
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            fun_delete("DELETE FROM tempOrder1 WHERE menuId='" + txb_menuId.Text + "'");
+            fun_delete("DELETE FROM  WHERE menuId='" + txb_menuId.Text + "'");
             refresh();
         }
 
@@ -255,7 +255,7 @@ namespace WindowsFormsApp7
             if (txb_qty.Text != "" && txb_namaMenu.Text != "")
             {
                 fun_query("INSERT INTO OrderHeader([id],[employeeId],[memberId],[date]) VALUES('" + txb_orderId.Text + "','1','2',getDate());");
-                fun_insert("INSERT INTO tempOrder1([menuId],[qty],[total]) VALUES('" + txb_menuId.Text + "', '" + txb_qty.Text + "', '" + total() + "')");
+                fun_insert("INSERT INTO ([menuId],[qty],[total]) VALUES('" + txb_menuId.Text + "', '" + txb_qty.Text + "', '" + total() + "')");
                 total();
                 refresh();
             }
@@ -269,7 +269,7 @@ namespace WindowsFormsApp7
                 foreach (DataGridViewRow row in dgv_order.Rows)
                 {
                     koneksi.Open();
-                    SqlCommand command = new SqlCommand(@"INSERT INTO OrderDetail1([orderId],[menuId],[qty],[status], [total]) VALUES
+                    SqlCommand command = new SqlCommand(@"INSERT INTO OrderDetail([orderId],[menuId],[qty],[status], [total]) VALUES
                     (@order,@menuName ,@qty, 'unpaid', @total)", koneksi);
                     command.Parameters.AddWithValue("@order", txb_orderId.Text);
                     command.Parameters.AddWithValue("@menuName", row.Cells[1].Value);
@@ -277,7 +277,7 @@ namespace WindowsFormsApp7
                     command.Parameters.AddWithValue("@total", row.Cells[7].Value);
                     command.ExecuteNonQuery();
                     refresh();
-                    fun_query("DELETE FROM tempOrder1");
+                    fun_query("DELETE FROM ");
                 }
             }
             catch (Exception ex)
@@ -293,12 +293,12 @@ namespace WindowsFormsApp7
 
         private void Form_Order_FormClosing(object sender, FormClosingEventArgs e)
         {
-            fun_query("DELETE FROM tempOrder1");
+            fun_query("DELETE FROM ");
         }
 
         private void btn_hapusOrder_Click(object sender, EventArgs e)
         {
-            fun_delete("DELETE FROM tempOrder1");
+            fun_delete("DELETE FROM ");
             txb_orderId.Clear();
             refresh();
         }
