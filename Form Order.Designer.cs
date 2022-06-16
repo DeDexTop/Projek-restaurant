@@ -61,19 +61,17 @@
             // 
             // txb_price
             // 
-            this.txb_price.Location = new System.Drawing.Point(640, 453);
-            this.txb_price.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txb_price.Location = new System.Drawing.Point(427, 294);
             this.txb_price.Name = "txb_price";
-            this.txb_price.Size = new System.Drawing.Size(228, 26);
+            this.txb_price.Size = new System.Drawing.Size(153, 20);
             this.txb_price.TabIndex = 42;
             this.txb_price.Visible = false;
             // 
             // btn_refresh
             // 
-            this.btn_refresh.Location = new System.Drawing.Point(291, 25);
-            this.btn_refresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_refresh.Location = new System.Drawing.Point(194, 16);
             this.btn_refresh.Name = "btn_refresh";
-            this.btn_refresh.Size = new System.Drawing.Size(112, 35);
+            this.btn_refresh.Size = new System.Drawing.Size(75, 23);
             this.btn_refresh.TabIndex = 32;
             this.btn_refresh.Text = "Refresh ID";
             this.btn_refresh.UseVisualStyleBackColor = true;
@@ -90,11 +88,9 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.dgv_order);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(43, 588);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Location = new System.Drawing.Point(29, 382);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(864, 394);
+            this.groupBox2.Size = new System.Drawing.Size(576, 256);
             this.groupBox2.TabIndex = 41;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Daftar Order";
@@ -102,10 +98,9 @@
             // btn_hapusOrder
             // 
             this.btn_hapusOrder.AutoSize = true;
-            this.btn_hapusOrder.Location = new System.Drawing.Point(668, 25);
-            this.btn_hapusOrder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_hapusOrder.Location = new System.Drawing.Point(445, 16);
             this.btn_hapusOrder.Name = "btn_hapusOrder";
-            this.btn_hapusOrder.Size = new System.Drawing.Size(186, 46);
+            this.btn_hapusOrder.Size = new System.Drawing.Size(125, 30);
             this.btn_hapusOrder.TabIndex = 31;
             this.btn_hapusOrder.Text = "Bersihkan Daftar Order";
             this.btn_hapusOrder.UseVisualStyleBackColor = true;
@@ -115,28 +110,25 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(9, 37);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(6, 24);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 22);
+            this.label7.Size = new System.Drawing.Size(53, 15);
             this.label7.TabIndex = 28;
             this.label7.Text = "Order ID";
             // 
             // txb_orderId
             // 
-            this.txb_orderId.Location = new System.Drawing.Point(132, 29);
-            this.txb_orderId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txb_orderId.Location = new System.Drawing.Point(88, 19);
             this.txb_orderId.Name = "txb_orderId";
             this.txb_orderId.ReadOnly = true;
-            this.txb_orderId.Size = new System.Drawing.Size(148, 26);
+            this.txb_orderId.Size = new System.Drawing.Size(100, 20);
             this.txb_orderId.TabIndex = 27;
             // 
             // btn_insertOrder
             // 
-            this.btn_insertOrder.Location = new System.Drawing.Point(370, 335);
-            this.btn_insertOrder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_insertOrder.Location = new System.Drawing.Point(247, 218);
             this.btn_insertOrder.Name = "btn_insertOrder";
-            this.btn_insertOrder.Size = new System.Drawing.Size(112, 35);
+            this.btn_insertOrder.Size = new System.Drawing.Size(75, 23);
             this.btn_insertOrder.TabIndex = 18;
             this.btn_insertOrder.Text = "Order";
             this.btn_insertOrder.UseVisualStyleBackColor = true;
@@ -146,10 +138,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(651, 335);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(434, 218);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 22);
+            this.label6.Size = new System.Drawing.Size(40, 15);
             this.label6.TabIndex = 21;
             this.label6.Text = "Total: ";
             // 
@@ -157,21 +148,19 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(204, 335);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(136, 218);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 22);
+            this.label5.Size = new System.Drawing.Size(52, 15);
             this.label5.TabIndex = 20;
             this.label5.Text = "Protein: ";
             // 
             // dgv_order
             // 
             this.dgv_order.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_order.Location = new System.Drawing.Point(9, 78);
-            this.dgv_order.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgv_order.Location = new System.Drawing.Point(6, 51);
             this.dgv_order.Name = "dgv_order";
             this.dgv_order.RowHeadersWidth = 62;
-            this.dgv_order.Size = new System.Drawing.Size(846, 248);
+            this.dgv_order.Size = new System.Drawing.Size(564, 161);
             this.dgv_order.TabIndex = 17;
             this.dgv_order.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_order_CellClick);
             // 
@@ -179,10 +168,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(14, 335);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(9, 218);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 22);
+            this.label4.Size = new System.Drawing.Size(77, 15);
             this.label4.TabIndex = 19;
             this.label4.Text = "Karbohidrat: ";
             // 
@@ -192,11 +180,9 @@
             this.groupBox1.Controls.Add(this.txb_cari);
             this.groupBox1.Controls.Add(this.btn_cari);
             this.groupBox1.Controls.Add(this.txb_menuId);
-            this.groupBox1.Location = new System.Drawing.Point(43, 81);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Location = new System.Drawing.Point(29, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(864, 283);
+            this.groupBox1.Size = new System.Drawing.Size(576, 184);
             this.groupBox1.TabIndex = 40;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Daftar Menu";
@@ -204,29 +190,26 @@
             // dgv_menu
             // 
             this.dgv_menu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_menu.Location = new System.Drawing.Point(9, 69);
-            this.dgv_menu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgv_menu.Location = new System.Drawing.Point(6, 45);
             this.dgv_menu.Name = "dgv_menu";
             this.dgv_menu.RowHeadersWidth = 62;
-            this.dgv_menu.Size = new System.Drawing.Size(846, 205);
+            this.dgv_menu.Size = new System.Drawing.Size(564, 133);
             this.dgv_menu.TabIndex = 9;
             this.dgv_menu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Menu_CellClick);
             // 
             // txb_cari
             // 
-            this.txb_cari.Location = new System.Drawing.Point(584, 28);
-            this.txb_cari.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txb_cari.Location = new System.Drawing.Point(389, 18);
             this.txb_cari.Name = "txb_cari";
-            this.txb_cari.Size = new System.Drawing.Size(148, 26);
+            this.txb_cari.Size = new System.Drawing.Size(100, 20);
             this.txb_cari.TabIndex = 22;
             this.txb_cari.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txb_cari_KeyDown);
             // 
             // btn_cari
             // 
-            this.btn_cari.Location = new System.Drawing.Point(742, 25);
-            this.btn_cari.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_cari.Location = new System.Drawing.Point(495, 16);
             this.btn_cari.Name = "btn_cari";
-            this.btn_cari.Size = new System.Drawing.Size(112, 35);
+            this.btn_cari.Size = new System.Drawing.Size(75, 23);
             this.btn_cari.TabIndex = 23;
             this.btn_cari.Text = "Cari";
             this.btn_cari.UseVisualStyleBackColor = true;
@@ -234,18 +217,16 @@
             // 
             // txb_menuId
             // 
-            this.txb_menuId.Location = new System.Drawing.Point(597, 182);
-            this.txb_menuId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txb_menuId.Location = new System.Drawing.Point(398, 118);
             this.txb_menuId.Name = "txb_menuId";
-            this.txb_menuId.Size = new System.Drawing.Size(228, 26);
+            this.txb_menuId.Size = new System.Drawing.Size(153, 20);
             this.txb_menuId.TabIndex = 26;
             // 
             // btn_insert
             // 
-            this.btn_insert.Location = new System.Drawing.Point(505, 527);
-            this.btn_insert.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_insert.Location = new System.Drawing.Point(337, 343);
             this.btn_insert.Name = "btn_insert";
-            this.btn_insert.Size = new System.Drawing.Size(112, 35);
+            this.btn_insert.Size = new System.Drawing.Size(75, 23);
             this.btn_insert.TabIndex = 38;
             this.btn_insert.Text = "Tambahkan";
             this.btn_insert.UseVisualStyleBackColor = true;
@@ -255,10 +236,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(439, 421);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(293, 274);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 22);
+            this.label3.Size = new System.Drawing.Size(24, 15);
             this.label3.TabIndex = 37;
             this.label3.Text = "Qty";
             // 
@@ -266,46 +246,41 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(439, 381);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(293, 248);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 22);
+            this.label2.Size = new System.Drawing.Size(76, 15);
             this.label2.TabIndex = 36;
             this.label2.Text = "Nama Menu";
             // 
             // txb_qty
             // 
-            this.txb_qty.Location = new System.Drawing.Point(640, 413);
-            this.txb_qty.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txb_qty.Location = new System.Drawing.Point(427, 268);
             this.txb_qty.Name = "txb_qty";
-            this.txb_qty.Size = new System.Drawing.Size(228, 26);
+            this.txb_qty.Size = new System.Drawing.Size(153, 20);
             this.txb_qty.TabIndex = 35;
             // 
             // txb_namaMenu
             // 
-            this.txb_namaMenu.Location = new System.Drawing.Point(640, 373);
-            this.txb_namaMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txb_namaMenu.Location = new System.Drawing.Point(427, 242);
             this.txb_namaMenu.Name = "txb_namaMenu";
-            this.txb_namaMenu.Size = new System.Drawing.Size(228, 26);
+            this.txb_namaMenu.Size = new System.Drawing.Size(153, 20);
             this.txb_namaMenu.TabIndex = 34;
             // 
             // pb_image
             // 
             this.pb_image.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pb_image.Location = new System.Drawing.Point(118, 373);
-            this.pb_image.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pb_image.Location = new System.Drawing.Point(79, 242);
             this.pb_image.Name = "pb_image";
-            this.pb_image.Size = new System.Drawing.Size(241, 187);
+            this.pb_image.Size = new System.Drawing.Size(162, 123);
             this.pb_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pb_image.TabIndex = 33;
             this.pb_image.TabStop = false;
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(627, 527);
-            this.btn_delete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_delete.Location = new System.Drawing.Point(418, 343);
             this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(112, 35);
+            this.btn_delete.Size = new System.Drawing.Size(75, 23);
             this.btn_delete.TabIndex = 39;
             this.btn_delete.Text = "Hapus";
             this.btn_delete.UseVisualStyleBackColor = true;
@@ -315,17 +290,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(406, 10);
+            this.label1.Location = new System.Drawing.Point(271, 6);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 40);
+            this.label1.Size = new System.Drawing.Size(76, 29);
             this.label1.TabIndex = 32;
             this.label1.Text = "Order";
             // 
             // Form_Order
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(971, 994);
+            this.ClientSize = new System.Drawing.Size(647, 487);
             this.Controls.Add(this.txb_price);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -337,6 +313,7 @@
             this.Controls.Add(this.pb_image);
             this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form_Order";
             this.Text = "Form_Order";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Order_FormClosing);

@@ -36,9 +36,8 @@ namespace WindowsFormsApp7
             dgv_Menu.Columns[1].HeaderText = "Name";
             dgv_Menu.Columns[2].HeaderText = "Price";
             dgv_Menu.Columns[3].HeaderText = "Photo";
-            dgv_Menu.Columns[4].HeaderText = "Image";
-            dgv_Menu.Columns[5].HeaderText = "carbo";
-            dgv_Menu.Columns[6].HeaderText = "protein";
+            dgv_Menu.Columns[4].HeaderText = "carbo";
+            dgv_Menu.Columns[5].HeaderText = "protein";
         }
         void show()
         {
@@ -81,9 +80,11 @@ namespace WindowsFormsApp7
             txtName.Text = dgv_Menu.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtPrice.Text = dgv_Menu.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtPhoto.Text = dgv_Menu.Rows[e.RowIndex].Cells[3].Value.ToString();
-            txtCarbo.Text = dgv_Menu.Rows[e.RowIndex].Cells[5].Value.ToString();
-            txtProtein.Text = dgv_Menu.Rows[e.RowIndex].Cells[6].Value.ToString();
-            Image image = Image.FromFile(@"D:\\Project VS\\WindowsFormsApp7\\assets\\image.png");
+            txtCarbo.Text = dgv_Menu.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtProtein.Text = dgv_Menu.Rows[e.RowIndex].Cells[5].Value.ToString();
+            string dir = Path.GetDirectoryName(Application.ExecutablePath);
+            //string filename = Path.Combine(dir, @"MyImage.jpg");
+            Image image = Image.FromFile(dir +"\\assets\\"+ txtPhoto.Text);
             MenuPicture.Image = image;
 
             label8.Text = "Jika ingin mengupdate data, pilih ulang gambar";
@@ -95,8 +96,26 @@ namespace WindowsFormsApp7
             opf.Filter = "Choose Image(*.jpg; *.png; *.gif)|*.jpg; *.png; *.gif";
             if (opf.ShowDialog() == DialogResult.OK)
             {
+                string newLocation = Path.GetDirectoryName(Application.ExecutablePath) + "\\assets\\" + txtName.Text + ".png";
                 string fileName = opf.FileName;
+                if (File.Exists(newLocation))
+                {
+                  MenuPicture.Image.Dispose();
+                }
                 MenuPicture.Image = Image.FromFile(opf.FileName);
+
+                if (File.Exists(newLocation))
+                {
+                    File.Delete(newLocation);
+                    File.Copy(fileName, newLocation);
+                }
+                else
+                {
+                    File.Copy(fileName, newLocation);
+                }
+
+                string newName = txtName.Text + ".png";
+                txtPhoto.Text = newName;
             }
         }
 
@@ -113,7 +132,7 @@ namespace WindowsFormsApp7
                 {
                     koneksi.Open();
 
-                    SqlCommand com = new SqlCommand("INSERT INTO MsMenu ([name], [price], [photo], [carbo], [protein], [image]) VALUES ('" + txtName.Text + "','" + txtPrice.Text + "','" + txtPhoto.Text + "', '" + txtCarbo.Text + "', '" + txtProtein.Text + "', @Pic)", koneksi);
+                    SqlCommand com = new SqlCommand("INSERT INTO MsMenu ([name], [price], [photo], [carbo], [protein]) VALUES ('" + txtName.Text + "','" + txtPrice.Text + "','" + txtPhoto.Text + "', '" + txtCarbo.Text + "', '" + txtProtein.Text + "')", koneksi);
                     MemoryStream stream = new MemoryStream();
                     MenuPicture.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
                     byte[] pic = stream.ToArray();
@@ -148,7 +167,7 @@ namespace WindowsFormsApp7
                 {
                     koneksi.Open();
 
-                    SqlCommand com = new SqlCommand("UPDATE MsMenu SET name = '" + txtName.Text + "', price = '" + txtPrice.Text + "', photo = '" + txtPhoto.Text + "', carbo = '" + txtCarbo.Text + "', protein = '" + txtProtein.Text + "', image = @Pic WHERE id = '" + txtMenuId.Text + "'", koneksi);
+                    SqlCommand com = new SqlCommand("UPDATE MsMenu SET name = '" + txtName.Text + "', price = '" + txtPrice.Text + "', photo = '" + txtPhoto.Text + "', carbo = '" + txtCarbo.Text + "', protein = '" + txtProtein.Text + "'WHERE id = '" + txtMenuId.Text + "'", koneksi);
                     MemoryStream stream = new MemoryStream();
                     MenuPicture.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
                     byte[] pic = stream.ToArray();
@@ -177,6 +196,9 @@ namespace WindowsFormsApp7
                 koneksi.Open();
                 SqlCommand com = new SqlCommand("DELETE FROM MsMenu WHERE id = '" + txtMenuId.Text + "'", koneksi);
                 com.ExecuteNonQuery();
+                string newLocation = Path.GetDirectoryName(Application.ExecutablePath) + "\\assets\\" + txtName.Text + ".png";
+                MenuPicture.Image.Dispose();
+                File.Delete(newLocation);
                 MessageBox.Show("DataBerhasil Dihapus", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 show();
@@ -246,5 +268,6 @@ namespace WindowsFormsApp7
             new Form_Admin().Show();
             this.Hide();
         }
+
     }
 }

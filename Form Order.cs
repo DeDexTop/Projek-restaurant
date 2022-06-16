@@ -179,42 +179,35 @@ namespace WindowsFormsApp7
             txb_namaMenu.Clear();
             txb_qty.Clear();
             pb_image.Image = null;
-            fun_read("SELECT .id, .menuId, MsMenu.name NamaMenu, .qty Banyak, MsMenu.carbo Carbo, MsMenu.protein Protein, MsMenu.price Harga, .total Total FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id; ", dgv_order);
             dgv_order.Columns[0].Visible = false;
             dgv_order.Columns[1].Visible = false;
-            fun_setText("SELECT SUM(carbo) hasil FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id;", "Karbohidrat: ", label4, "hasil");
-            fun_setText("SELECT SUM(protein) hasil FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id;", "Protein: ", label5, "hasil");
-            fun_setText("SELECT SUM(total) hasil FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id;", "Total: ", label6, "hasil");
 
         }
 
         private void Form_Order_Load(object sender, EventArgs e)
         {
             
-            fun_read("SELECT id MenuId, name NamaMenu, price Harga, photo Photo, image Image, carbo Karbohidrat, protein Protein FROM MsMenu", dgv_menu);
-            fun_read("SELECT .id orderid, .menuId menuId, MsMenu.name NamaMenu, .qty Banyak, MsMenu.carbo Carbo, MsMenu.protein Protein, MsMenu.price Harga, .total Total FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id; ", dgv_order);
+            fun_read("SELECT id MenuId, name NamaMenu, price Harga, photo Photo, carbo Karbohidrat, protein Protein FROM MsMenu", dgv_menu);
+            //load temp order
             txb_menuId.Visible = false;
-            dgv_menu.Columns[0].Visible = false;
-            dgv_menu.Columns[3].Visible = false;
-            dgv_menu.Columns[4].Visible = false;
-            dgv_order.Columns[0].Visible = false;
-            dgv_order.Columns[1].Visible = false;
-            txb_namaMenu.Enabled = false;
+            //dgv_menu.Columns[0].Visible = false;
+            //dgv_menu.Columns[3].Visible = false;
+            //dgv_menu.Columns[4].Visible = false;
+            //dgv_order.Columns[0].Visible = false;
+            //dgv_order.Columns[1].Visible = false;
+            //txb_namaMenu.Enabled = false;
         }
 
         private void dgv_Menu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txb_menuId.Text = dgv_menu.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txb_namaMenu.Text = dgv_menu.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txb_price.Text = dgv_menu.Rows[e.RowIndex].Cells[2].Value.ToString();
-            if (DBNull.Value.Equals(dgv_menu.Rows[e.RowIndex].Cells[4].Value))
-            {
-                pb_image.Image = null;
-            }
-            else
-            {
-                pb_image.Image = ConvertByteToArray((byte[])dgv_menu.Rows[e.RowIndex].Cells[4].Value);
-            }
+            //txb_menuId.Text = dgv_menu.Rows[e.RowIndex].Cells[0].Value.ToString();
+            //txb_namaMenu.Text = dgv_menu.Rows[e.RowIndex].Cells[1].Value.ToString();
+            //txb_price.Text = dgv_menu.Rows[e.RowIndex].Cells[2].Value.ToString();
+            //Console.WriteLine(dgv_menu.Rows[e.RowIndex].Cells[0].Value);
+                string dir = Path.GetDirectoryName(Application.ExecutablePath);
+            Console.WriteLine(dir + '\\' + dgv_menu.Rows[e.RowIndex].Cells[3].Value);
+                Image image = Image.FromFile(dir + '\\' + dgv_menu.Rows[e.RowIndex].Cells[3].Value                    );
+            pb_image.Image = image;
         }
 
         private void btn_cari_Click(object sender, EventArgs e)
@@ -246,7 +239,7 @@ namespace WindowsFormsApp7
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            fun_delete("DELETE FROM  WHERE menuId='" + txb_menuId.Text + "'");
+            //delete selected order
             refresh();
         }
 
@@ -255,7 +248,7 @@ namespace WindowsFormsApp7
             if (txb_qty.Text != "" && txb_namaMenu.Text != "")
             {
                 fun_query("INSERT INTO OrderHeader([id],[employeeId],[memberId],[date]) VALUES('" + txb_orderId.Text + "','1','2',getDate());");
-                fun_insert("INSERT INTO ([menuId],[qty],[total]) VALUES('" + txb_menuId.Text + "', '" + txb_qty.Text + "', '" + total() + "')");
+                // insert to local
                 total();
                 refresh();
             }
@@ -277,7 +270,7 @@ namespace WindowsFormsApp7
                     command.Parameters.AddWithValue("@total", row.Cells[7].Value);
                     command.ExecuteNonQuery();
                     refresh();
-                    fun_query("DELETE FROM ");
+                    // delete list temp
                 }
             }
             catch (Exception ex)
@@ -293,14 +286,12 @@ namespace WindowsFormsApp7
 
         private void Form_Order_FormClosing(object sender, FormClosingEventArgs e)
         {
-            fun_query("DELETE FROM ");
+            // hapus order sementara
         }
 
         private void btn_hapusOrder_Click(object sender, EventArgs e)
         {
-            fun_delete("DELETE FROM ");
-            txb_orderId.Clear();
-            refresh();
+            // hapus order sementara
         }
 
         private void dgv_order_CellClick(object sender, DataGridViewCellEventArgs e)
