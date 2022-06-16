@@ -29,15 +29,15 @@ namespace WindowsFormsApp7
         }
         void data()
         {
-            DataTable.Columns[0].HeaderText = "MemberId";
-            DataTable.Columns[1].HeaderText = "Name";
-            DataTable.Columns[2].HeaderText = "Email";
-            DataTable.Columns[3].HeaderText = "Handphone";
-            DataTable.Columns[4].HeaderText = "Join Date";
+            dgv_Member.Columns[0].HeaderText = "MemberId";
+            dgv_Member.Columns[1].HeaderText = "Name";
+            dgv_Member.Columns[2].HeaderText = "Email";
+            dgv_Member.Columns[3].HeaderText = "Handphone";
+            dgv_Member.Columns[4].HeaderText = "Join Date";
         }
         void show()
         {
-            DataTable.DataSource = ShowData("SELECT * FROM MsMember");
+            dgv_Member.DataSource = ShowData("SELECT * FROM MsMember");
             data();
 
             txtId.Enabled = false;
@@ -56,10 +56,10 @@ namespace WindowsFormsApp7
 
         private void DataTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtId.Text = DataTable.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txtName.Text = DataTable.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtEmail.Text = DataTable.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txtHandphone.Text = DataTable.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtId.Text = dgv_Member.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtName.Text = dgv_Member.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtEmail.Text = dgv_Member.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtHandphone.Text = dgv_Member.Rows[e.RowIndex].Cells[3].Value.ToString();
         }
 
         private void BtnInsert_Click(object sender, EventArgs e)
@@ -147,7 +147,7 @@ namespace WindowsFormsApp7
             try
             {
                 koneksi.Open();
-                DataTable.DataSource = ShowData("SELECT * FROM MsMember WHERE id LIKE '%" + SearchBox.Text + "%' OR name LIKE '%" + SearchBox.Text + "%' OR email LIKE '%" + SearchBox.Text + "%' OR handphone LIKE '%" + SearchBox.Text + "%' OR join_date LIKE '%" + SearchBox.Text + "%'");
+                dgv_Member.DataSource = ShowData("SELECT * FROM MsMember WHERE id LIKE '%" + SearchBox.Text + "%' OR name LIKE '%" + SearchBox.Text + "%' OR email LIKE '%" + SearchBox.Text + "%' OR handphone LIKE '%" + SearchBox.Text + "%' OR join_date LIKE '%" + SearchBox.Text + "%'");
                 data();
             }
             catch (Exception ex)
@@ -163,6 +163,12 @@ namespace WindowsFormsApp7
         private void btnCancel_Click(object sender, EventArgs e)
         {
             clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Form_Admin().Show();
+            this.Hide();
         }
     }
 }

@@ -35,6 +35,7 @@
             this.btnMngMenu = new System.Windows.Forms.Button();
             this.btnOrder = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnReport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMngEmployee
@@ -58,7 +59,7 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(198, 440);
+            this.btnLogout.Location = new System.Drawing.Point(198, 494);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(180, 36);
             this.btnLogout.TabIndex = 13;
@@ -106,11 +107,22 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Admin Navigation";
             // 
+            // btnReport
+            // 
+            this.btnReport.Location = new System.Drawing.Point(198, 440);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(180, 36);
+            this.btnReport.TabIndex = 16;
+            this.btnReport.Text = "Report";
+            this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            // 
             // Form_Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 525);
+            this.ClientSize = new System.Drawing.Size(568, 553);
+            this.Controls.Add(this.btnReport);
             this.Controls.Add(this.btnMngEmployee);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogout);
@@ -134,5 +146,6 @@
         private System.Windows.Forms.Button btnMngMenu;
         private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnReport;
     }
 }

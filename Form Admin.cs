@@ -44,7 +44,13 @@ namespace WindowsFormsApp7
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            new Form1().Show();
+            new Form_Login().Show();
+            this.Hide();
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            new Form_Report().Show();
             this.Hide();
         }
     }

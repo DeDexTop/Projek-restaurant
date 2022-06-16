@@ -12,8 +12,11 @@ D:\Project VS\WindowsFormsApp7\bin\Debug\System.Data.SqlClient.dll
 D:\Project VS\WindowsFormsApp7\bin\Debug\System.Data.SqlClient.xml
 D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_Admin.resources
 D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_Cashier.resources
-D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form1.resources
 D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_ManageEmployee.resources
 D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.csproj.CopyComplete
 D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_ManageMember.resources
 D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_ManageMenu.resources
+D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_Login.resources
+D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_Order.resources
+D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_Payment.resources
+D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_Report.resources

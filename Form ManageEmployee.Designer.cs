@@ -48,6 +48,7 @@
             this.SearchBox = new System.Windows.Forms.TextBox();
             this.dgv_Employee = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Employee)).BeginInit();
             this.SuspendLayout();
             // 
@@ -231,11 +232,22 @@
             this.label1.TabIndex = 40;
             this.label1.Text = "Form Manage Employee";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(24, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(64, 32);
+            this.button1.TabIndex = 60;
+            this.button1.Text = "Back";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form_ManageEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 562);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtID);
@@ -287,5 +299,6 @@
         private System.Windows.Forms.TextBox SearchBox;
         private System.Windows.Forms.DataGridView dgv_Employee;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }

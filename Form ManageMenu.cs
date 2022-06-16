@@ -31,21 +31,21 @@ namespace WindowsFormsApp7
         }
         void data()
         {
-            DataTable.Columns[0].HeaderText = "MenuId";
-            DataTable.Columns[1].HeaderText = "Name";
-            DataTable.Columns[2].HeaderText = "Price";
-            DataTable.Columns[3].HeaderText = "Photo";
-            DataTable.Columns[4].HeaderText = "Image";
-            DataTable.Columns[5].HeaderText = "carbo";
-            DataTable.Columns[6].HeaderText = "protein";
+            dgv_Menu.Columns[0].HeaderText = "MenuId";
+            dgv_Menu.Columns[1].HeaderText = "Name";
+            dgv_Menu.Columns[2].HeaderText = "Price";
+            dgv_Menu.Columns[3].HeaderText = "Photo";
+            dgv_Menu.Columns[4].HeaderText = "Image";
+            dgv_Menu.Columns[5].HeaderText = "carbo";
+            dgv_Menu.Columns[6].HeaderText = "protein";
         }
         void show()
         {
-            DataTable.DataSource = ShowData("SELECT * FROM MsMenu1");
+            dgv_Menu.DataSource = ShowData("SELECT * FROM MsMenu1");
             data();
 
-            DataTable.Columns[3].Visible = false;
-            DataTable.Columns[4].Visible = false;
+            dgv_Menu.Columns[3].Visible = false;
+            dgv_Menu.Columns[4].Visible = false;
 
             txtMenuId.Enabled = false;
         }
@@ -57,6 +57,8 @@ namespace WindowsFormsApp7
             txtPhoto.Text = "";
             txtCarbo.Text = "";
             txtProtein.Text = "";
+            BoxSearch.Text = "";
+            label8.Text = "";
             MenuPicture.Image = null;
         }
         public Image ConvertByteToArray(byte[] data)
@@ -70,24 +72,26 @@ namespace WindowsFormsApp7
         private void Form_ManageMenu_Load(object sender, EventArgs e)
         {
             show();
+            label8.Text = "";
         }
         private void DataTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtMenuId.Text = DataTable.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txtName.Text = DataTable.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtPrice.Text = DataTable.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txtPhoto.Text = DataTable.Rows[e.RowIndex].Cells[3].Value.ToString();
-            if (DBNull.Value.Equals(DataTable.Rows[e.RowIndex].Cells[4].Value))
+            txtMenuId.Text = dgv_Menu.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtName.Text = dgv_Menu.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtPrice.Text = dgv_Menu.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtPhoto.Text = dgv_Menu.Rows[e.RowIndex].Cells[3].Value.ToString();
+            if (DBNull.Value.Equals(dgv_Menu.Rows[e.RowIndex].Cells[4].Value))
             {
                 MenuPicture.Image = null;
             }
             else
             {
-                MenuPicture.Image = ConvertByteToArray((byte[])DataTable.Rows[e.RowIndex].Cells[4].Value);
+                MenuPicture.Image = ConvertByteToArray((byte[])dgv_Menu.Rows[e.RowIndex].Cells[4].Value);
             }
-            txtCarbo.Text = DataTable.Rows[e.RowIndex].Cells[5].Value.ToString();
-            txtProtein.Text = DataTable.Rows[e.RowIndex].Cells[6].Value.ToString();
-            
+            txtCarbo.Text = dgv_Menu.Rows[e.RowIndex].Cells[5].Value.ToString();
+            txtProtein.Text = dgv_Menu.Rows[e.RowIndex].Cells[6].Value.ToString();
+
+            label8.Text = "Jika ingin mengupdate data, pilih ulang gambar";
         }
 
         private void btnSrchImage_Click(object sender, EventArgs e)
@@ -198,10 +202,9 @@ namespace WindowsFormsApp7
             try
             {
                 koneksi.Open();
-                DataTable.DataSource = ShowData("SELECT * FROM MsMenu1 WHERE name LIKE '%" + BoxSearch.Text + "%' OR price LIKE '%" + BoxSearch.Text + "%' OR photo LIKE '%" + BoxSearch.Text + "%' OR carbo LIKE '%" + BoxSearch.Text + "%' OR protein LIKE '%" + BoxSearch.Text + "%'");
+                dgv_Menu.DataSource = ShowData("SELECT * FROM MsMenu1 WHERE name LIKE '%" + BoxSearch.Text + "%' OR price LIKE '%" + BoxSearch.Text + "%' OR photo LIKE '%" + BoxSearch.Text + "%' OR carbo LIKE '%" + BoxSearch.Text + "%' OR protein LIKE '%" + BoxSearch.Text + "%'");
                 data();
 
-                show();
             }
             catch (Exception ex)
             {
@@ -216,6 +219,37 @@ namespace WindowsFormsApp7
         private void btnCancel_Click(object sender, EventArgs e)
         {
             clear();
+            show();
+        }
+
+        private void BoxSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+
+                    koneksi.Open();
+                    dgv_Menu.DataSource = ShowData("SELECT * FROM MsMenu1 WHERE name LIKE '%" + BoxSearch.Text + "%' OR price LIKE '%" + BoxSearch.Text + "%' OR photo LIKE '%" + BoxSearch.Text + "%' OR carbo LIKE '%" + BoxSearch.Text + "%' OR protein LIKE '%" + BoxSearch.Text + "%'");
+                    data();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                koneksi.Close();
+            }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Form_Admin().Show();
+            this.Hide();
         }
     }
 }

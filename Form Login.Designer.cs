@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp7
 {
-    partial class Form1
+    partial class Form_Login
     {
         /// <summary>
         /// Required designer variable.
@@ -34,6 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cb_Show = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -90,19 +91,32 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "SMK Restaurant";
             // 
-            // Form1
+            // cb_Show
+            // 
+            this.cb_Show.AutoSize = true;
+            this.cb_Show.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cb_Show.Location = new System.Drawing.Point(472, 268);
+            this.cb_Show.Name = "cb_Show";
+            this.cb_Show.Size = new System.Drawing.Size(148, 24);
+            this.cb_Show.TabIndex = 12;
+            this.cb_Show.Text = "Show Password";
+            this.cb_Show.UseVisualStyleBackColor = true;
+            this.cb_Show.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // Form_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cb_Show);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Form_Login";
+            this.Text = "Form_Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,6 +130,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox cb_Show;
     }
 }
 

@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp7
 {
-    public partial class Form1 : Form
+    public partial class Form_Login : Form
     {
         static string url = @"Data Source=localhost;Initial Catalog=db_restaurant;Integrated Security=True";
         SqlConnection koneksi = new SqlConnection(url);
         public static string ut;
-        public Form1()
+        public Form_Login()
         {
             InitializeComponent();
         }
@@ -86,6 +86,18 @@ namespace WindowsFormsApp7
                 {
                     login();
                 }
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_Show.Checked)
+            {
+                txtPass.PasswordChar = '\0';
+            }
+            else
+            {
+                txtPass.PasswordChar = '●';
             }
         }
     }

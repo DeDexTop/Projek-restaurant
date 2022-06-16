@@ -179,5 +179,11 @@ namespace WindowsFormsApp7
         {
             clear();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Form_Admin().Show();
+            this.Hide();
+        }
     }   
 }

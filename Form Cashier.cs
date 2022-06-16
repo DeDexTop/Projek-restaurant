@@ -20,12 +20,13 @@ namespace WindowsFormsApp7
 
         private void btnPayment_Click(object sender, EventArgs e)
         {
-
+            new Form_Payment().Show();
+            this.Hide();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            new Form1().Show();
+            new Form_Login().Show();
             this.Hide();
         }
     }
