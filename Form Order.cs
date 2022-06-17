@@ -48,11 +48,16 @@ namespace WindowsFormsApp7
             return dt.Rows;
         }
 
+        public string incrementid()
+        {
+            DataRowCollection col = GetData("SELECT id FROM OrderHeader");
+            return col.Count.ToString("D4");
+        }
+
         public string idmember()
         {
             DataRowCollection col = GetData("SELECT id FROM MsMember WHERE name LIKE '" + cbxMember.Text + "'");
             return col[0][0].ToString();
-            
         }
 
         void data()
@@ -130,9 +135,8 @@ namespace WindowsFormsApp7
         }
         string generateId()
         {
-            string date = DateTime.Now.ToString("yyyyMMdd");
-            string hasil = $"{date}{orderid++.ToString().PadLeft(3, '0')}";
-            return hasil;
+            string date = DateTime.Now.ToString("yyyyMMdd" + incrementid());
+            return date;
         }
         void label()
         {
@@ -226,25 +230,28 @@ namespace WindowsFormsApp7
             idmember();
             try
             {
+                    if (koneksi.State == ConnectionState.Closed) koneksi.Open();
                 string id = generateId();
-                SqlCommand com = new SqlCommand("INSERT INTO OrderHeader ([id], [employeeid], [memberid], [date], [paymenttype], [bank]) VALUES (@id, @emid, @memid, getdate())");
+                SqlCommand com = new SqlCommand("INSERT INTO OrderHeader ([id], [employeeid], [memberid], [date], [paymenttype],[cardnumber], [bank]) VALUES (@id, @emid, @memid, getdate(), @paymenttype, @cardnumber, @bank)");
+                com.Connection = koneksi;
                 com.Parameters.AddWithValue("@id", id);
                 com.Parameters.AddWithValue("emid", idemployee);
                 com.Parameters.AddWithValue("@memid", idmember());
-                foreach (DataGridViewRow row in dgv_Order.Rows)
+                com.Parameters.AddWithValue("@paymenttype", "");
+                com.Parameters.AddWithValue("@cardnumber", "");
+                com.Parameters.AddWithValue("@bank", "");
+                com.ExecuteNonQuery();
+                //foreach (DataGridViewRow row in dgv_Order.Rows)
+                for (int i= 0; i < dgv_Order.Rows.Count; i++)
                 {
                     if (koneksi.State == ConnectionState.Closed) koneksi.Open();
                     command = new SqlCommand(@"INSERT INTO OrderDetail([orderid],[menuid],[qty],[status]) VALUES
                     (@order,@menuName ,@qty, 'unpaid')", koneksi);
                     command.Parameters.AddWithValue("@order", id);
-                    command.Parameters.AddWithValue("@menuName", row.Cells[0].Value);
-                    command.Parameters.AddWithValue("@qty", row.Cells[2].Value);
+                    command.Parameters.AddWithValue("@menuName", dgv_Order.Rows[0].Cells[0].Value);
+                    command.Parameters.AddWithValue("@qty", dgv_Order.Rows[0].Cells[2].Value);
                     command.ExecuteNonQuery();
-
-                    
-       
-
-                    dgv_Order.Rows.RemoveAt(row.Index);
+                    dgv_Order.Rows.RemoveAt(dgv_Order.Rows[0].Index);
                     clear();
                 }
             }
