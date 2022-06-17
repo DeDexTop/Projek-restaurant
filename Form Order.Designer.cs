@@ -52,6 +52,7 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
+            this.cbxMember = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Order)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Menu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MenuPicture)).BeginInit();
@@ -276,11 +277,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // cbxMember
+            // 
+            this.cbxMember.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbxMember.FormattingEnabled = true;
+            this.cbxMember.Location = new System.Drawing.Point(564, 418);
+            this.cbxMember.Name = "cbxMember";
+            this.cbxMember.Size = new System.Drawing.Size(215, 28);
+            this.cbxMember.TabIndex = 80;
+            // 
             // Form_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(971, 879);
+            this.Controls.Add(this.cbxMember);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.MenuPicture);
             this.Controls.Add(this.labelTotal);
@@ -332,5 +343,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cbxMember;
     }
 }

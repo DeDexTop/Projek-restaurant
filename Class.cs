@@ -9,5 +9,6 @@ namespace WindowsFormsApp7
     internal class Class
     {
         public static string pegawai = "";
+        public static string idpegawai = "";
     }
 }

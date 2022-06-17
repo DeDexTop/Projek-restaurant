@@ -21,6 +21,7 @@ namespace WindowsFormsApp7
         public int jumlah, harga, hasil, karbo, prote, totalKarbo, totalProte;
         int orderid = 0;
 
+        public string idemployee = Class.idpegawai;
        
 
         public Form_Order()
@@ -39,6 +40,21 @@ namespace WindowsFormsApp7
             object bebas = data.Tables[0];
             return bebas;
         }
+        public DataRowCollection GetData(string query)
+        {
+            SqlDataAdapter sda = new SqlDataAdapter(query, url);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            return dt.Rows;
+        }
+
+        public string idmember()
+        {
+            DataRowCollection col = GetData("SELECT id FROM MsMember WHERE name LIKE '" + cbxMember.Text + "'");
+            return col[0][0].ToString();
+            
+        }
+
         void data()
         {
             dgv_Menu.Columns[0].HeaderText = "MenuId";
@@ -51,6 +67,12 @@ namespace WindowsFormsApp7
         void show()
         {
             dgv_Menu.DataSource = ShowData("SELECT * FROM MsMenu");
+            DataRowCollection col = GetData("SELECT name FROM MsMember");
+            foreach(DataRow row in col)
+            {
+                cbxMember.Items.Add(row["name"]);
+            }
+
             data();
 
             dgv_Menu.Columns[0].Visible = false;
@@ -201,17 +223,26 @@ namespace WindowsFormsApp7
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
+            idmember();
             try
             {
+                string id = generateId();
+                SqlCommand com = new SqlCommand("INSERT INTO OrderHeader ([id], [employeeid], [memberid], [date], [paymenttype], [bank]) VALUES (@id, @emid, @memid, getdate())");
+                com.Parameters.AddWithValue("@id", id);
+                com.Parameters.AddWithValue("emid", idemployee);
+                com.Parameters.AddWithValue("@memid", idmember());
                 foreach (DataGridViewRow row in dgv_Order.Rows)
                 {
                     if (koneksi.State == ConnectionState.Closed) koneksi.Open();
                     command = new SqlCommand(@"INSERT INTO OrderDetail([orderid],[menuid],[qty],[status]) VALUES
                     (@order,@menuName ,@qty, 'unpaid')", koneksi);
-                    command.Parameters.AddWithValue("@order", generateId());
+                    command.Parameters.AddWithValue("@order", id);
                     command.Parameters.AddWithValue("@menuName", row.Cells[0].Value);
                     command.Parameters.AddWithValue("@qty", row.Cells[2].Value);
                     command.ExecuteNonQuery();
+
+                    
+       
 
                     dgv_Order.Rows.RemoveAt(row.Index);
                     clear();

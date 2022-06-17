@@ -26,7 +26,7 @@ namespace WindowsFormsApp7
             try
             {
                 koneksi.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("SELECT name, email, password, position FROM MsEmployee WHERE email LIKE '" + txtEmail.Text + "' AND password LIKE '" + txtPass.Text + "'", koneksi);
+                SqlDataAdapter sda = new SqlDataAdapter("SELECT id, name, email, password, position FROM MsEmployee WHERE email LIKE '" + txtEmail.Text + "' AND password LIKE '" + txtPass.Text + "'", koneksi);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 if(dt.Rows.Count > 0)
@@ -34,6 +34,7 @@ namespace WindowsFormsApp7
                     foreach(DataRow dr in dt.Rows)
                     {
                         Class.pegawai = dr["name"].ToString();
+                        Class.idpegawai = dr["id"].ToString();
 
                         if(dr["position"].ToString() == "admin")
                         {
