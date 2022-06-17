@@ -16,10 +16,12 @@ namespace WindowsFormsApp7
     {
         public static string url = @"Data Source=localhost;Initial Catalog=db_restaurant;Integrated Security=True";
         SqlConnection koneksi = new SqlConnection(url);
+        SqlCommand command;
         public string id, name, qty, carbo, protein, price, total, totalcarbo, totalprotein;
         public int jumlah, harga, hasil, karbo, prote, totalKarbo, totalProte;
+        int orderid = 0;
 
-        
+       
 
         public Form_Order()
         {
@@ -104,6 +106,12 @@ namespace WindowsFormsApp7
             string bebas = totalProte.ToString();
             return bebas;
         }
+        string generateId()
+        {
+            string date = DateTime.Now.ToString("yyyyMMdd");
+            string hasil = $"{date}{orderid++.ToString().PadLeft(3, '0')}";
+            return hasil;
+        }
         void label()
         {
             int car = 0;
@@ -124,6 +132,12 @@ namespace WindowsFormsApp7
                 total += Convert.ToInt32(dgv_Order.Rows[i].Cells[6].Value);
                 labelTotal.Text = "Total : " + total.ToString();
             }
+        }
+        void clear()
+        {
+            txb_qty.Text = "";
+            txb_namaMenu.Text = "";
+            MenuPicture.Image = null;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -165,9 +179,7 @@ namespace WindowsFormsApp7
                     dgv_Order.Rows.Add(id, name, qty, carbo, protein, price, total, totalcarbo, totalprotein);
                 }
 
-                txb_qty.Text = "";
-                txb_namaMenu.Text = "";
-                MenuPicture.Image = null;
+                clear();
                 label();    
             }
         }
@@ -185,6 +197,35 @@ namespace WindowsFormsApp7
         {
             new Form_Admin().Show();
             this.Hide();
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dgv_Order.Rows)
+                {
+                    if (koneksi.State == ConnectionState.Closed) koneksi.Open();
+                    command = new SqlCommand(@"INSERT INTO OrderDetail([orderid],[menuid],[qty],[status]) VALUES
+                    (@order,@menuName ,@qty, 'unpaid')", koneksi);
+                    command.Parameters.AddWithValue("@order", generateId());
+                    command.Parameters.AddWithValue("@menuName", row.Cells[0].Value);
+                    command.Parameters.AddWithValue("@qty", row.Cells[2].Value);
+                    command.ExecuteNonQuery();
+
+                    dgv_Order.Rows.RemoveAt(row.Index);
+                    clear();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                koneksi.Close();
+            }
         }
     }
 }
