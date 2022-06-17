@@ -16,11 +16,18 @@ namespace WindowsFormsApp7
     {
         public static string url = @"Data Source=localhost;Initial Catalog=db_restaurant;Integrated Security=True";
         SqlConnection koneksi = new SqlConnection(url);
-        int id = 0;
+        public string id, name, qty, carbo, protein, price, total, totalcarbo, totalprotein;
+        public int jumlah, harga, hasil, karbo, prote, totalKarbo, totalProte;
+
+        
+
         public Form_Order()
         {
             InitializeComponent();
         }
+
+
+
         public object ShowData(string query)
         {
             SqlDataAdapter adapter = new SqlDataAdapter(query, url);
@@ -30,301 +37,154 @@ namespace WindowsFormsApp7
             object bebas = data.Tables[0];
             return bebas;
         }
-        public void fun_read(string query, DataGridView dgv)
+        void data()
         {
-            try
-            {
-                koneksi.Open();
-                SqlCommand command = new SqlCommand(query, koneksi);
-                SqlDataAdapter sda = new SqlDataAdapter(command);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                dgv.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                koneksi.Close();
-            }
+            dgv_Menu.Columns[0].HeaderText = "MenuId";
+            dgv_Menu.Columns[1].HeaderText = "Name";
+            dgv_Menu.Columns[2].HeaderText = "Price";
+            dgv_Menu.Columns[3].HeaderText = "Photo";
+            dgv_Menu.Columns[4].HeaderText = "carbo";
+            dgv_Menu.Columns[5].HeaderText = "protein";
         }
-
-        public void fun_query(string query)
+        void show()
         {
-            try
-            {
-                koneksi.Open();
-                SqlCommand command = new SqlCommand(query, koneksi);
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                koneksi.Close();
-            }
+            dgv_Menu.DataSource = ShowData("SELECT * FROM MsMenu");
+            data();
 
+            dgv_Menu.Columns[0].Visible = false;
+            dgv_Menu.Columns[3].Visible = false;
+
+            dgv_Order.Columns[0].Visible = false;
+            dgv_Order.Columns[8].Visible = false;
+            dgv_Order.Columns[7].Visible = false;
         }
-
-        public void fun_insert(string query)
-        {
-            try
-            {
-                koneksi.Open();
-                SqlCommand command = new SqlCommand(query, koneksi);
-                command.ExecuteNonQuery();
-                MessageBox.Show("Data Berhasil Ditambahkan", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                koneksi.Close();
-            }
-
-        }
-
-        public void fun_delete(string query)
-        {
-            try
-            {
-                koneksi.Open();
-                SqlCommand command = new SqlCommand(query, koneksi);
-                command.ExecuteNonQuery();
-                MessageBox.Show("Data Berhasil Dihapus", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                koneksi.Close();
-            }
-
-        }
-
-        public Image ConvertByteToArray(byte[] data)
-        {
-            using (MemoryStream ms = new MemoryStream(data))
-            {
-                return Image.FromStream(ms);
-            }
-        }
-        public void fun_setText(string query, string label, Label lb, string field)
-        {
-            try
-            {
-                koneksi.Open();
-                SqlCommand command = new SqlCommand(query, koneksi);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    lb.Text = $"{label}{reader[field].ToString()}";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                koneksi.Close();
-            }
-        }
-
-        string generateId()
-        {
-            string date = DateTime.Now.ToString("yyyyMMdd");
-            string hasil = $"{date}{id++.ToString().PadLeft(3, '0')}";
-            txb_orderId.Text = hasil;
-            return hasil;
-        }
-
-        string total()
-        {
-            int qty = int.Parse(txb_qty.Text);
-            int price = int.Parse(txb_price.Text);
-            int hasil = price * qty;
-            string finaly = hasil.ToString();
-            return finaly;
-        }
-
-        void checkId()
-        {
-            koneksi = new SqlConnection(url);
-            string query = "SELECT COUNT(*) FROM OrderHeader WHERE id=@id";
-            SqlCommand command = new SqlCommand(query, koneksi);
-            command.Parameters.AddWithValue("@user", txb_orderId.Text);
-            int UserExist = (int)command.ExecuteScalar();
-
-            if (UserExist > 0)
-            {
-                //Username exist
-            }
-            else
-            {
-                generateId();
-            }
-        }
-        void refresh()
-        {
-            txb_cari.Clear();
-            txb_namaMenu.Clear();
-            txb_qty.Clear();
-            pb_image.Image = null;
-            fun_read("SELECT .id, .menuId, MsMenu.name NamaMenu, .qty Banyak, MsMenu.carbo Carbo, MsMenu.protein Protein, MsMenu.price Harga, .total Total FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id; ", dgv_order);
-            dgv_order.Columns[0].Visible = false;
-            dgv_order.Columns[1].Visible = false;
-            fun_setText("SELECT SUM(carbo) hasil FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id;", "Karbohidrat: ", label4, "hasil");
-            fun_setText("SELECT SUM(protein) hasil FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id;", "Protein: ", label5, "hasil");
-            fun_setText("SELECT SUM(total) hasil FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id;", "Total: ", label6, "hasil");
-
-        }
-
         private void Form_Order_Load(object sender, EventArgs e)
         {
-            
-            fun_read("SELECT id MenuId, name NamaMenu, price Harga, photo Photo, image Image, carbo Karbohidrat, protein Protein FROM MsMenu", dgv_menu);
-            fun_read("SELECT .id orderid, .menuId menuId, MsMenu.name NamaMenu, .qty Banyak, MsMenu.carbo Carbo, MsMenu.protein Protein, MsMenu.price Harga, .total Total FROM  INNER JOIN MsMenu ON .menuId = MsMenu.id; ", dgv_order);
-            txb_menuId.Visible = false;
-            dgv_menu.Columns[0].Visible = false;
-            dgv_menu.Columns[3].Visible = false;
-            dgv_menu.Columns[4].Visible = false;
-            dgv_order.Columns[0].Visible = false;
-            dgv_order.Columns[1].Visible = false;
+            show();
             txb_namaMenu.Enabled = false;
         }
 
         private void dgv_Menu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txb_menuId.Text = dgv_menu.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txb_namaMenu.Text = dgv_menu.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txb_price.Text = dgv_menu.Rows[e.RowIndex].Cells[2].Value.ToString();
-            if (DBNull.Value.Equals(dgv_menu.Rows[e.RowIndex].Cells[4].Value))
+            txb_namaMenu.Text = dgv_Menu.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+            string dir = Path.GetDirectoryName(Application.ExecutablePath);
+            Image image = Image.FromFile(dir + "\\assets\\" + dgv_Menu.Rows[e.RowIndex].Cells[3].Value.ToString());
+            MenuPicture.Image = image;
+
+            id = dgv_Menu.Rows[e.RowIndex].Cells[0].Value.ToString();
+            name = dgv_Menu.Rows[e.RowIndex].Cells[1].Value.ToString();
+            carbo = dgv_Menu.Rows[e.RowIndex].Cells[4].Value.ToString();
+            protein = dgv_Menu.Rows[e.RowIndex].Cells[5].Value.ToString();
+            price = dgv_Menu.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+            karbo = int.Parse(dgv_Menu.Rows[e.RowIndex].Cells[4].Value.ToString());
+            prote = int.Parse(dgv_Menu.Rows[e.RowIndex].Cells[5].Value.ToString());
+            harga = int.Parse(dgv_Menu.Rows[e.RowIndex].Cells[2].Value.ToString());
+        }
+        string Total()
+        {
+            jumlah = int.Parse(txb_qty.Text);
+            hasil = jumlah * harga;
+            total = hasil.ToString();
+            string bebas = total;
+            return bebas;
+        }
+        string TotalCarbo()
+        {
+            jumlah = int.Parse(txb_qty.Text);
+            totalKarbo = jumlah * karbo;
+            string bebas = totalKarbo.ToString();
+            return bebas;
+        }
+        string TotalProtein()
+        {
+            jumlah = int.Parse(txb_qty.Text);
+            totalProte = jumlah * prote;
+            string bebas = totalProte.ToString();
+            return bebas;
+        }
+        void label()
+        {
+            int car = 0;
+            for (int i = 0; i < dgv_Order.Rows.Count; ++i)
             {
-                pb_image.Image = null;
+                car += Convert.ToInt32(dgv_Order.Rows[i].Cells[7].Value);
+                labelCarbo.Text = "Carbo : " + car.ToString();
             }
-            else
+            int pro = 0;
+            for (int i = 0; i < dgv_Order.Rows.Count; ++i)
             {
-                pb_image.Image = ConvertByteToArray((byte[])dgv_menu.Rows[e.RowIndex].Cells[4].Value);
+                pro += Convert.ToInt32(dgv_Order.Rows[i].Cells[8].Value);
+                labelProtein.Text = "Protein : " + pro.ToString();
+            }
+            int total = 0;
+            for(int i = 0; i < dgv_Order.Rows.Count; ++i)
+            {
+                total += Convert.ToInt32(dgv_Order.Rows[i].Cells[6].Value);
+                labelTotal.Text = "Total : " + total.ToString();
             }
         }
 
-        private void btn_cari_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (txb_cari.Text != "")
+            if (txb_qty.Text == "" || MenuPicture.Image == null || txb_namaMenu.Text == "")
             {
-                fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu WHERE name='" + txb_cari.Text + "' ", dgv_menu);
+                MessageBox.Show("Semua kolom harap di isi", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
             else
             {
-                fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu", dgv_menu);
-            }
-        }
-
-        private void txb_cari_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (txb_cari.Text != "")
+                bool found = false; 
+                if(dgv_Order.Rows.Count > 0)
                 {
-                    fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu WHERE name='" + txb_cari.Text + "' ", dgv_menu);
+                    foreach (DataGridViewRow row in dgv_Order.Rows)
+                    {
+                        if(Convert.ToString(row.Cells[1].Value) == txb_namaMenu.Text)
+                        {   
+                            row.Cells[2].Value = Convert.ToString(Convert.ToInt32(txb_qty.Text) + Convert.ToInt32(row.Cells[2].Value));
+                            row.Cells[6].Value = Convert.ToString(Convert.ToInt32(row.Cells[6].Value) + Convert.ToInt32(Total()));
+                            found = true;
+                        }
+                    }
+                    if(!found)
+                    {
+                        Total();
+                        qty = txb_qty.Text;
+                        totalcarbo = TotalCarbo();
+                        totalprotein = TotalProtein();
+                        dgv_Order.Rows.Add(id, name, qty, carbo, protein, price, total, totalcarbo, totalprotein);
+                    }
                 }
                 else
                 {
-                    fun_read("SELECT name NamaMenu, price Harga, carbo Karbohidrat, protein Protein, photo Foto FROM MsMenu", dgv_menu);
+                    Total();
+                    qty = txb_qty.Text;
+                    totalcarbo = TotalCarbo();
+                    totalprotein = TotalProtein();
+                    dgv_Order.Rows.Add(id, name, qty, carbo, protein, price, total, totalcarbo, totalprotein);
                 }
+
+                txb_qty.Text = "";
+                txb_namaMenu.Text = "";
+                MenuPicture.Image = null;
+                label();    
             }
         }
-
-        private void btn_delete_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            fun_delete("DELETE FROM  WHERE menuId='" + txb_menuId.Text + "'");
-            refresh();
-        }
-
-        private void btn_insert_Click(object sender, EventArgs e)
-        {
-            if (txb_qty.Text != "" && txb_namaMenu.Text != "")
+            foreach (DataGridViewRow row in dgv_Order.SelectedRows)
             {
-                fun_query("INSERT INTO OrderHeader([id],[employeeId],[memberId],[date]) VALUES('" + txb_orderId.Text + "','1','2',getDate());");
-                fun_insert("INSERT INTO ([menuId],[qty],[total]) VALUES('" + txb_menuId.Text + "', '" + txb_qty.Text + "', '" + total() + "')");
-                total();
-                refresh();
+                dgv_Order.Rows.RemoveAt(row.Index);
+
+                label();
             }
         }
 
-        private void btn_insertOrder_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            koneksi = new SqlConnection(url);
-            try
-            {
-                foreach (DataGridViewRow row in dgv_order.Rows)
-                {
-                    koneksi.Open();
-                    SqlCommand command = new SqlCommand(@"INSERT INTO OrderDetail([orderId],[menuId],[qty],[status], [total]) VALUES
-                    (@order,@menuName ,@qty, 'unpaid', @total)", koneksi);
-                    command.Parameters.AddWithValue("@order", txb_orderId.Text);
-                    command.Parameters.AddWithValue("@menuName", row.Cells[1].Value);
-                    command.Parameters.AddWithValue("@qty", row.Cells[3].Value);
-                    command.Parameters.AddWithValue("@total", row.Cells[7].Value);
-                    command.ExecuteNonQuery();
-                    refresh();
-                    fun_query("DELETE FROM ");
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                koneksi.Close();
-            }
-        }
-
-        private void Form_Order_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            fun_query("DELETE FROM ");
-        }
-
-        private void btn_hapusOrder_Click(object sender, EventArgs e)
-        {
-            fun_delete("DELETE FROM ");
-            txb_orderId.Clear();
-            refresh();
-        }
-
-        private void dgv_order_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                //gets a collection that contains all the rows
-                DataGridViewRow row = this.dgv_order.Rows[e.RowIndex];
-                //populate the textbox from specific value of the coordinates of column and row.
-
-                txb_menuId.Text = row.Cells[1].Value.ToString();
-                txb_namaMenu.Text = row.Cells[2].Value.ToString();
-            }
-        }
-
-        private void btn_refresh_Click(object sender, EventArgs e)
-        {
-            //generateId();
-
-            string date = DateTime.Now.ToString("yyyyMMdd");
-            id++;
-            string hasil = $"{date}{id.ToString().PadLeft(3, '0')}";
-            txb_orderId.Text = hasil;
-            Console.WriteLine(id);
+            new Form_Admin().Show();
+            this.Hide();
         }
     }
 }

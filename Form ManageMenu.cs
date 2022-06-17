@@ -36,9 +36,8 @@ namespace WindowsFormsApp7
             dgv_Menu.Columns[1].HeaderText = "Name";
             dgv_Menu.Columns[2].HeaderText = "Price";
             dgv_Menu.Columns[3].HeaderText = "Photo";
-            dgv_Menu.Columns[4].HeaderText = "Image";
-            dgv_Menu.Columns[5].HeaderText = "carbo";
-            dgv_Menu.Columns[6].HeaderText = "protein";
+            dgv_Menu.Columns[4].HeaderText = "carbo";
+            dgv_Menu.Columns[5].HeaderText = "protein";
         }
         void show()
         {
@@ -62,13 +61,6 @@ namespace WindowsFormsApp7
             label8.Text = "";
             MenuPicture.Image = null;
         }
-        public Image ConvertByteToArray(byte[] data)
-        {
-            using (MemoryStream ms = new MemoryStream(data))
-            {
-                return Image.FromStream(ms);
-            }
-        }
 
         private void Form_ManageMenu_Load(object sender, EventArgs e)
         {
@@ -81,9 +73,11 @@ namespace WindowsFormsApp7
             txtName.Text = dgv_Menu.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtPrice.Text = dgv_Menu.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtPhoto.Text = dgv_Menu.Rows[e.RowIndex].Cells[3].Value.ToString();
-            txtCarbo.Text = dgv_Menu.Rows[e.RowIndex].Cells[5].Value.ToString();
-            txtProtein.Text = dgv_Menu.Rows[e.RowIndex].Cells[6].Value.ToString();
-            Image image = Image.FromFile(@"D:\\Project VS\\WindowsFormsApp7\\assets\\image.png");
+            txtCarbo.Text = dgv_Menu.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtProtein.Text = dgv_Menu.Rows[e.RowIndex].Cells[5].Value.ToString();
+
+            string dir = Path.GetDirectoryName(Application.ExecutablePath);
+            Image image = Image.FromFile(dir + "\\assets\\" + txtPhoto.Text);
             MenuPicture.Image = image;
 
             label8.Text = "Jika ingin mengupdate data, pilih ulang gambar";
@@ -95,8 +89,27 @@ namespace WindowsFormsApp7
             opf.Filter = "Choose Image(*.jpg; *.png; *.gif)|*.jpg; *.png; *.gif";
             if (opf.ShowDialog() == DialogResult.OK)
             {
-                string fileName = opf.FileName;
+                
+                string newlocation = Path.GetDirectoryName(Application.ExecutablePath) + "\\assets\\" + txtName.Text + ".png";
+                string filename = opf.FileName;
+                if(File.Exists(newlocation))
+                {
+                    MenuPicture.Image.Dispose();
+                }
                 MenuPicture.Image = Image.FromFile(opf.FileName);
+
+                if(File.Exists(newlocation))
+                {
+                    File.Delete(newlocation);
+                    File.Copy(filename, newlocation);
+                }
+                else
+                {
+                    File.Copy(filename, newlocation);
+                }
+
+                string newName = txtName.Text + ".png";
+                txtPhoto.Text = newName;
             }
         }
 
@@ -113,11 +126,7 @@ namespace WindowsFormsApp7
                 {
                     koneksi.Open();
 
-                    SqlCommand com = new SqlCommand("INSERT INTO MsMenu ([name], [price], [photo], [carbo], [protein], [image]) VALUES ('" + txtName.Text + "','" + txtPrice.Text + "','" + txtPhoto.Text + "', '" + txtCarbo.Text + "', '" + txtProtein.Text + "', @Pic)", koneksi);
-                    MemoryStream stream = new MemoryStream();
-                    MenuPicture.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    byte[] pic = stream.ToArray();
-                    com.Parameters.AddWithValue("@Pic", pic);
+                    SqlCommand com = new SqlCommand("INSERT INTO MsMenu ([name], [price], [photo], [carbo], [protein]) VALUES ('" + txtName.Text + "','" + txtPrice.Text + "','" + txtPhoto.Text + "', '" + txtCarbo.Text + "', '" + txtProtein.Text + "')", koneksi);
                     com.ExecuteNonQuery();
                     MessageBox.Show("DataBerhasil Ditambahkan", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -149,10 +158,6 @@ namespace WindowsFormsApp7
                     koneksi.Open();
 
                     SqlCommand com = new SqlCommand("UPDATE MsMenu SET name = '" + txtName.Text + "', price = '" + txtPrice.Text + "', photo = '" + txtPhoto.Text + "', carbo = '" + txtCarbo.Text + "', protein = '" + txtProtein.Text + "', image = @Pic WHERE id = '" + txtMenuId.Text + "'", koneksi);
-                    MemoryStream stream = new MemoryStream();
-                    MenuPicture.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    byte[] pic = stream.ToArray();
-                    com.Parameters.AddWithValue("@Pic", pic);
                     com.ExecuteNonQuery();
                     MessageBox.Show("DataBerhasil Diubah", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -177,6 +182,9 @@ namespace WindowsFormsApp7
                 koneksi.Open();
                 SqlCommand com = new SqlCommand("DELETE FROM MsMenu WHERE id = '" + txtMenuId.Text + "'", koneksi);
                 com.ExecuteNonQuery();
+                string newlocation = Path.GetDirectoryName(Application.ExecutablePath) + "\\assetes\\" + txtName.Text + ".png";
+                MenuPicture.Image.Dispose();
+                File.Delete(newlocation);
                 MessageBox.Show("DataBerhasil Dihapus", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 show();
@@ -197,7 +205,7 @@ namespace WindowsFormsApp7
             try
             {
                 koneksi.Open();
-                dgv_Menu.DataSource = ShowData("SELECT * FROM MsMenu WHERE name LIKE '%" + BoxSearch.Text + "%' OR price LIKE '%" + BoxSearch.Text + "%' OR photo LIKE '%" + BoxSearch.Text + "%' OR carbo LIKE '%" + BoxSearch.Text + "%' OR protein LIKE '%" + BoxSearch.Text + "%'");
+                dgv_Menu.DataSource = ShowData("SELECT * FROM MsMenu WHERE id, name, price, photo, carbo, protein LIKE '%" + Convert.ToInt32(BoxSearch.Text) + "%' ");
                 data();
 
             }
@@ -225,7 +233,7 @@ namespace WindowsFormsApp7
                 {
 
                     koneksi.Open();
-                    dgv_Menu.DataSource = ShowData("SELECT * FROM MsMenu WHERE name LIKE '%" + BoxSearch.Text + "%' OR price LIKE '%" + BoxSearch.Text + "%' OR photo LIKE '%" + BoxSearch.Text + "%' OR carbo LIKE '%" + BoxSearch.Text + "%' OR protein LIKE '%" + BoxSearch.Text + "%'");
+                    dgv_Menu.DataSource = ShowData("SELECT * FROM MsMenu WHERE id, name, price, photo, carbo, protein LIKE '%" + Convert.ToInt32(BoxSearch.Text) + "%' ");
                     data();
 
                 }

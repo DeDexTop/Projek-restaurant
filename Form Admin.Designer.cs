@@ -40,6 +40,7 @@
             // 
             // btnMngEmployee
             // 
+            this.btnMngEmployee.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMngEmployee.Location = new System.Drawing.Point(198, 386);
             this.btnMngEmployee.Name = "btnMngEmployee";
             this.btnMngEmployee.Size = new System.Drawing.Size(180, 36);
@@ -50,6 +51,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(49, 123);
             this.label2.Name = "label2";
@@ -59,6 +61,7 @@
             // 
             // btnLogout
             // 
+            this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnLogout.Location = new System.Drawing.Point(198, 494);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(180, 36);
@@ -69,6 +72,7 @@
             // 
             // btnMngMember
             // 
+            this.btnMngMember.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMngMember.Location = new System.Drawing.Point(198, 332);
             this.btnMngMember.Name = "btnMngMember";
             this.btnMngMember.Size = new System.Drawing.Size(180, 36);
@@ -79,6 +83,7 @@
             // 
             // btnMngMenu
             // 
+            this.btnMngMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMngMenu.Location = new System.Drawing.Point(198, 273);
             this.btnMngMenu.Name = "btnMngMenu";
             this.btnMngMenu.Size = new System.Drawing.Size(180, 36);
@@ -89,6 +94,7 @@
             // 
             // btnOrder
             // 
+            this.btnOrder.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnOrder.Location = new System.Drawing.Point(198, 214);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(180, 36);
@@ -99,6 +105,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(162, 50);
@@ -109,6 +116,7 @@
             // 
             // btnReport
             // 
+            this.btnReport.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnReport.Location = new System.Drawing.Point(198, 440);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(180, 36);

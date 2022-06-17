@@ -39,6 +39,7 @@
             // 
             // btnLogin
             // 
+            this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnLogin.Location = new System.Drawing.Point(363, 342);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(93, 38);
@@ -49,6 +50,7 @@
             // 
             // txtPass
             // 
+            this.txtPass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtPass.Location = new System.Drawing.Point(297, 227);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '●';
@@ -58,6 +60,7 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtEmail.Location = new System.Drawing.Point(297, 177);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(327, 26);
@@ -65,6 +68,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(177, 230);
             this.label3.Name = "label3";
@@ -74,6 +78,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(177, 180);
             this.label2.Name = "label2";
@@ -83,6 +88,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(236, 70);
@@ -93,6 +99,7 @@
             // 
             // cb_Show
             // 
+            this.cb_Show.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cb_Show.AutoSize = true;
             this.cb_Show.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cb_Show.Location = new System.Drawing.Point(472, 268);

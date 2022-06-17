@@ -54,6 +54,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancel.Location = new System.Drawing.Point(691, 481);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(85, 32);
@@ -64,6 +65,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(425, 281);
             this.label2.Name = "label2";
@@ -73,6 +75,7 @@
             // 
             // txtID
             // 
+            this.txtID.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtID.Location = new System.Drawing.Point(560, 278);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(216, 26);
@@ -80,6 +83,7 @@
             // 
             // cbxPosition
             // 
+            this.cbxPosition.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbxPosition.FormattingEnabled = true;
             this.cbxPosition.Items.AddRange(new object[] {
             "admin",
@@ -92,6 +96,7 @@
             // 
             // BtnDelete
             // 
+            this.BtnDelete.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BtnDelete.Location = new System.Drawing.Point(429, 513);
             this.BtnDelete.Name = "BtnDelete";
             this.BtnDelete.Size = new System.Drawing.Size(85, 32);
@@ -102,6 +107,7 @@
             // 
             // BtnUpdate
             // 
+            this.BtnUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BtnUpdate.Location = new System.Drawing.Point(331, 513);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(85, 32);
@@ -112,6 +118,7 @@
             // 
             // BtnInsert
             // 
+            this.BtnInsert.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BtnInsert.Location = new System.Drawing.Point(231, 513);
             this.BtnInsert.Name = "BtnInsert";
             this.BtnInsert.Size = new System.Drawing.Size(85, 32);
@@ -122,6 +129,7 @@
             // 
             // BtnSearch
             // 
+            this.BtnSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BtnSearch.Location = new System.Drawing.Point(206, 265);
             this.BtnSearch.Name = "BtnSearch";
             this.BtnSearch.Size = new System.Drawing.Size(85, 32);
@@ -132,6 +140,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(425, 445);
             this.label7.Name = "label7";
@@ -141,6 +150,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(425, 413);
             this.label6.Name = "label6";
@@ -150,6 +160,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(425, 384);
             this.label5.Name = "label5";
@@ -159,6 +170,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(425, 351);
             this.label4.Name = "label4";
@@ -168,6 +180,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(425, 316);
             this.label3.Name = "label3";
@@ -177,6 +190,7 @@
             // 
             // txtHandphone
             // 
+            this.txtHandphone.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtHandphone.Location = new System.Drawing.Point(560, 410);
             this.txtHandphone.Name = "txtHandphone";
             this.txtHandphone.Size = new System.Drawing.Size(216, 26);
@@ -184,6 +198,7 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtEmail.Location = new System.Drawing.Point(560, 345);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(216, 26);
@@ -191,6 +206,7 @@
             // 
             // txtPassword
             // 
+            this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtPassword.Location = new System.Drawing.Point(560, 378);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(216, 26);
@@ -198,6 +214,7 @@
             // 
             // txtName
             // 
+            this.txtName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtName.Location = new System.Drawing.Point(560, 313);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(216, 26);
@@ -205,6 +222,7 @@
             // 
             // SearchBox
             // 
+            this.SearchBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SearchBox.Location = new System.Drawing.Point(24, 268);
             this.SearchBox.Name = "SearchBox";
             this.SearchBox.Size = new System.Drawing.Size(162, 26);
@@ -212,6 +230,7 @@
             // 
             // dgv_Employee
             // 
+            this.dgv_Employee.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgv_Employee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_Employee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Employee.Location = new System.Drawing.Point(24, 92);
@@ -224,6 +243,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(249, 24);
@@ -234,6 +254,7 @@
             // 
             // button1
             // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Location = new System.Drawing.Point(24, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(64, 32);

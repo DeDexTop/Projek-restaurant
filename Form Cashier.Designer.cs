@@ -36,6 +36,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(23, 143);
             this.label2.Name = "label2";
@@ -45,6 +46,7 @@
             // 
             // btnLogout
             // 
+            this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnLogout.Location = new System.Drawing.Point(145, 332);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(180, 36);
@@ -55,6 +57,7 @@
             // 
             // btnPayment
             // 
+            this.btnPayment.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPayment.Location = new System.Drawing.Point(145, 273);
             this.btnPayment.Name = "btnPayment";
             this.btnPayment.Size = new System.Drawing.Size(180, 36);
@@ -65,6 +68,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(109, 56);

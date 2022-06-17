@@ -51,6 +51,7 @@
             // 
             // button2
             // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button2.Location = new System.Drawing.Point(12, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(64, 32);
@@ -61,6 +62,7 @@
             // 
             // label8
             // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(703, 402);
@@ -71,6 +73,7 @@
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(165, 446);
@@ -82,6 +85,7 @@
             // 
             // txb_member
             // 
+            this.txb_member.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txb_member.Location = new System.Drawing.Point(351, 438);
             this.txb_member.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txb_member.Name = "txb_member";
@@ -90,6 +94,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(165, 526);
@@ -101,6 +106,7 @@
             // 
             // txb_cash
             // 
+            this.txb_cash.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txb_cash.Location = new System.Drawing.Point(591, 526);
             this.txb_cash.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txb_cash.Name = "txb_cash";
@@ -109,6 +115,7 @@
             // 
             // btn_insert
             // 
+            this.btn_insert.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_insert.Location = new System.Drawing.Point(364, 602);
             this.btn_insert.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_insert.Name = "btn_insert";
@@ -120,6 +127,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(165, 526);
@@ -131,6 +139,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(165, 569);
@@ -142,6 +151,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(165, 488);
@@ -153,6 +163,7 @@
             // 
             // txb_cardNumber
             // 
+            this.txb_cardNumber.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txb_cardNumber.Location = new System.Drawing.Point(351, 562);
             this.txb_cardNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txb_cardNumber.Name = "txb_cardNumber";
@@ -161,6 +172,7 @@
             // 
             // cmb_bankName
             // 
+            this.cmb_bankName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmb_bankName.FormattingEnabled = true;
             this.cmb_bankName.Items.AddRange(new object[] {
             "Bank BRI",
@@ -177,6 +189,7 @@
             // 
             // cmb_typePay
             // 
+            this.cmb_typePay.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmb_typePay.FormattingEnabled = true;
             this.cmb_typePay.Items.AddRange(new object[] {
             "Cash",
@@ -191,6 +204,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(648, 402);
@@ -202,6 +216,7 @@
             // 
             // dgv_payment
             // 
+            this.dgv_payment.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgv_payment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_payment.Location = new System.Drawing.Point(13, 162);
             this.dgv_payment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -212,6 +227,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(256, 126);
@@ -223,6 +239,7 @@
             // 
             // cmb_orderId
             // 
+            this.cmb_orderId.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmb_orderId.FormattingEnabled = true;
             this.cmb_orderId.Location = new System.Drawing.Point(364, 119);
             this.cmb_orderId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -234,6 +251,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(344, 25);
