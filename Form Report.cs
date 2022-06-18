@@ -21,11 +21,18 @@ namespace WindowsFormsApp7
         {
             InitializeComponent();
         }
+        public DataRowCollection GetData(string query)
+        {
+            SqlDataAdapter sda = new SqlDataAdapter(query, url);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            return dt.Rows;
+        }
         public DataTable ResultDataTable(string command)
         {
             try
             {
-                koneksi.Open();
+                if (koneksi.State == ConnectionState.Closed) koneksi.Open();
                 SqlCommand cmd = new SqlCommand(command, koneksi);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -42,16 +49,12 @@ namespace WindowsFormsApp7
                 koneksi.Close();
             }
         }
-        void fun_read(string query, DataGridView dgv)
+        void fun_read()
         {
             try
             {
-                koneksi.Open();
-                command = new SqlCommand(query, koneksi);
-                SqlDataAdapter sda = new SqlDataAdapter(command);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                dgv.DataSource = dt;
+                if (koneksi.State == ConnectionState.Closed) koneksi.Open();
+                DataRowCollection dataMenu = GetData("SELECT MsMenu.price, OrderDetail.qty, OrderHeader.date FROM OrderHeader JOIN OrderDetail ON OrderDetail.orderid = OrderHeader.id JOIN MsMenu ON MsMenu.id = OrderDetail.menuid WHERE date BETWEEN '2022-06-17' AND '2022-06-17';");
             }
             catch (Exception ex)
             {
@@ -67,19 +70,52 @@ namespace WindowsFormsApp7
         {
             DataTable dtz = new DataTable();
             dtz = ResultDataTable(sql);
-            cb.DataSource = dtz;
-            cb.DisplayMember = displayString;
-            cb.ValueMember = valueString;
+            Console.WriteLine(displayString);
         }
         void getComboBoxItem()
         {
-            fun_setComboBox("SELECT DISTINCT TOP 100 date FROM OrderHeader;", comboBox1, "date", "date");
-            fun_setComboBox("SELECT DISTINCT TOP 100 date FROM OrderHeader;", comboBox2, "date", "date");
+            var items = new BindingList<KeyValuePair<string, string>>();
 
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/01/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Januari"));
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/02/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Februari"));
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/03/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Maret"));
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/04/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "April"));
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/05/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Mei"));
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/06/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Juni"));
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/07/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Juli"));
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/08/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Agustus"));
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/09/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "September"));
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/10/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Oktober"));
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/11/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "November"));
+            items.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/12/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "December"));
+
+            var items2 = new BindingList<KeyValuePair<string, string>>();
+
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/01/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Januari"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/02/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Februari"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/03/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Maret"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/04/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "April"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/05/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Mei"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/06/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Juni"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/07/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Juli"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/08/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Agustus"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/09/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "September"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/10/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Oktober"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/11/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "November"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/12/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "December"));
+
+            comboBox1.DataSource = items;
+            comboBox1.ValueMember = "Key";
+            comboBox1.DisplayMember = "Value";
+            comboBox2.DataSource = items2;
+            comboBox2.ValueMember = "Key";
+            comboBox2.DisplayMember = "Value";
         }
         void showData()
         {
-            fun_read("SELECT date, total FROM OrderHeader WHERE date BETWEEN '" + comboBox1.SelectedValue + "' AND '" + comboBox2.SelectedValue + "' ORDER BY date ASC ", dataGridView1);
+            Console.WriteLine(comboBox1.SelectedValue);
+            Console.WriteLine(comboBox2.SelectedValue);
+            fun_read();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -96,6 +132,26 @@ namespace WindowsFormsApp7
 
         private void btn_bulan_Click(object sender, EventArgs e)
         {
+            chart1.Series[0].Points.Clear();
+            dataGridView1.Rows.Clear();
+            for (int i = comboBox1.SelectedIndex +1; i <= comboBox2.SelectedIndex + 1; i++)
+            {
+                string month = i.ToString("D2");
+                DataRowCollection dataMenu = GetData("SELECT MsMenu.price, OrderDetail.qty, OrderHeader.date FROM OrderHeader JOIN OrderDetail ON OrderDetail.orderid = OrderHeader.id JOIN MsMenu ON MsMenu.id = OrderDetail.menuid WHERE date BETWEEN '2022-06-17' AND '2022-06-17';");
+                int income = 0;
+                for (int x = 0; x < dataMenu.Count; x++)
+                {
+                    if (DateTime.Parse(dataMenu[x][2].ToString()).ToString("MM") == DateTime.Parse($"2022/{month}/01").ToString("MM"))
+                    {
+                        Console.WriteLine("kesini");
+                        income += Convert.ToInt32(dataMenu[x][1].ToString()) * Convert.ToInt32(dataMenu[x][0].ToString());
+                    }
+                    Console.WriteLine(dataMenu[0][1]);
+                }
+                //string total = data
+                chart1.Series[0].Points.AddXY(DateTime.Parse($"2022/{month}/01").ToString("MMM"), Math.Round(income / 1000000m, 5));
+                dataGridView1.Rows.Add(DateTime.Parse($"2022/{month}/01").ToString("MMMM"), Math.Round(income / 1000000m, 5));
+            }
             showData();
         }
     }
