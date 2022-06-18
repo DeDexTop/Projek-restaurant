@@ -16,140 +16,13 @@ namespace WindowsFormsApp7
     {
         public static string url = @"Data Source=localhost;Initial Catalog=db_restaurant;Integrated Security=True";
         SqlConnection koneksi = new SqlConnection(url);
-        SqlCommand command;
-        SqlDataReader reader;
+   
+        public int qty, price, hasil;
+        public string total;
+
         public Form_Payment()
         {
             InitializeComponent();
-        }
-        public DataTable ResultDataTable(string command)
-        {
-            try
-            {
-                koneksi.Open();
-                SqlCommand cmd = new SqlCommand(command, koneksi);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                return dt;
-            }
-            catch (OleDbException ex)
-            {
-                MessageBox.Show(ex.Message + " : ' " + command + " ' ");
-                return null;
-            }
-            finally
-            {
-                koneksi.Close();
-            }
-        }
-
-        void refresh()
-        {
-            txb_cardNumber.Clear();
-            txb_cash.Clear();
-            txb_member.Clear();
-            fun_read("SELECT MsMenu.name NamaMenu, OrderDetail.qty Banyak, MsMenu.carbo Carbo, MsMenu.protein Protein, MsMenu.price Harga, OrderDetail.total Total FROM OrderDetail INNER JOIN MsMenu ON OrderDetail.menuId = MsMenu.id WHERE orderId='" + cmb_orderId.SelectedValue + "' AND status='unpaid' ", dgv_payment);
-            loadComboBox();
-            cmb_orderId.Text = "Pilih OrderId";
-            cmb_typePay.Text = "Pilih Pembayaran";
-            cmb_bankName.Visible = false;
-            txb_cardNumber.Visible = false;
-            label5.Visible = false;
-            label6.Visible = false;
-            txb_cash.Visible = false;
-            label7.Visible = false;
-        }
-        void fun_setComboBox(string sql, ComboBox cb, string valueString, string displayString)
-        {
-            DataTable dtz = new DataTable();
-            dtz = ResultDataTable(sql);
-            cb.DataSource = dtz;
-            cb.DisplayMember = displayString;
-            cb.ValueMember = valueString;
-        }
-        void loadComboBox()
-        {
-            fun_setComboBox(@"SELECT DISTINCT TOP 100 orderId FROM OrderDetail WHERE status='unpaid' ", cmb_orderId, "orderId", "orderId");
-        }
-        void fun_read(string query, DataGridView dgv)
-        {
-            try
-            {
-                koneksi.Open();
-                command = new SqlCommand(query, koneksi);
-                SqlDataAdapter sda = new SqlDataAdapter(command);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                dgv.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                koneksi.Close();
-            }
-
-        }
-        void fun_setText(string query, string label, Label lb, string field)
-        {
-            try
-            {
-                koneksi.Open();
-                command = new SqlCommand(query, koneksi);
-                reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    lb.Text = $"{label}{reader[field].ToString()}";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                koneksi.Close();
-            }
-        }
-        void fun_query(string query)
-        {
-            try
-            {
-                koneksi.Open();
-                command = new SqlCommand(query, koneksi);
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                koneksi.Close();
-            }
-
-        }
-        void fun_update(string query)
-        {
-            try
-            {
-                koneksi.Open();
-                command = new SqlCommand(query, koneksi);
-                command.ExecuteNonQuery();
-                MessageBox.Show("Data Berhasil Diperbarui", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                koneksi.Close();
-            }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -157,79 +30,122 @@ namespace WindowsFormsApp7
             new Form_Cashier().Show();
             this.Hide();
         }
-
-        private void cmb_orderId_SelectedValueChanged(object sender, EventArgs e)
+        string Total()
         {
-            fun_read("SELECT MsMenu.name NamaMenu, OrderDetail.qty Banyak, MsMenu.carbo Carbo, MsMenu.protein Protein, MsMenu.price Harga, OrderDetail.total Total FROM OrderDetail INNER JOIN MsMenu ON OrderDetail.menuId = MsMenu.id WHERE orderId='" + cmb_orderId.SelectedValue + "' ", dgv_payment);
-            fun_setText("SELECT SUM(total) hasil FROM OrderDetail WHERE orderId='" + cmb_orderId.SelectedValue + "';", "Total: ", label3, "hasil");
-            fun_setText("SELECT SUM(total) hasil FROM OrderDetail WHERE orderId='" + cmb_orderId.SelectedValue + "';", "", label8, "hasil");
+            qty = Convert.ToInt32(dgv_Payment.Rows[1].Cells[1].Value);
+            price = Convert.ToInt32(dgv_Payment.Rows[2].Cells[2].Value);
+            hasil = qty * price;
+            total = hasil.ToString();
+            return total;
         }
 
-        private void cmb_typePay_SelectedIndexChanged(object sender, EventArgs e)
+        public object ShowData(string query)
         {
-            if (cmb_typePay.SelectedIndex == 1)
+            SqlDataAdapter adapter = new SqlDataAdapter(query, url);
+            DataSet data = new DataSet();
+
+            adapter.Fill(data);
+            object bebas = data.Tables[0];
+            return bebas;
+        }
+
+        private void cbx_PaymentType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbx_PaymentType.Text == "Cash")
             {
-                cmb_bankName.Visible = true;
-                txb_cardNumber.Visible = true;
+                labelNumb.Text = "Amount of Money";
+                label5.Visible = false;
+                cbx_Bank.Visible = false;
+                txt_CardNumber.Visible = false;
+                txt_Cash.Visible = true;
+            }
+            else if(cbx_PaymentType.Text == "Credit")
+            {
+                labelNumb.Text = "Card Nnumber";
                 label5.Visible = true;
-                label6.Visible = true;
-                txb_cash.Visible = false;
-                label7.Visible = false;
+                cbx_Bank.Visible = true;
+                txt_CardNumber.Visible = true;
+                txt_Cash.Visible = false;
             }
-            else if (cmb_typePay.SelectedIndex == 0)
+            else if( cbx_PaymentType.Text == "")
             {
-                txb_cash.Visible = true;
-                label7.Visible = true;
-                cmb_bankName.Visible = false;
-                txb_cardNumber.Visible = false;
-                label5.Visible = false;
-                label6.Visible = false;
-            }
-            else
-            {
-                cmb_bankName.Visible = false;
-                txb_cardNumber.Visible = false;
-                label5.Visible = false;
-                label6.Visible = false;
-                txb_cash.Visible = false;
-                label7.Visible = false;
+                labelNumb.Text = "Card Nnumber";
+                label5.Visible = true;
+                cbx_Bank.Visible = true;
+                txt_CardNumber.Visible = true;
+                txt_Cash.Visible = false;
             }
         }
 
-        private void btn_insert_Click(object sender, EventArgs e)
+        public DataRowCollection GetData(string query)
         {
-            if (cmb_typePay.SelectedIndex == 1)
+            SqlDataAdapter sda = new SqlDataAdapter(query, url);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            return dt.Rows;
+        }
+
+        private void Form_Payment_Load(object sender, EventArgs e)
+        {
+            show();
+            cbx_OrderID.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbx_Bank.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbx_PaymentType.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        void data()
+        {
+            dgv_Payment.Columns[0].HeaderText = "Name";
+            dgv_Payment.Columns[1].HeaderText = "Qty";
+            dgv_Payment.Columns[2].HeaderText = "Price";
+        }
+        void clear()
+        {
+            labelNumb.Text = "Card Number";
+            label5.Visible = true;
+            cbx_Bank.Visible = true;
+            txt_CardNumber.Visible = true;
+            txt_Cash.Visible = false;
+
+            cbx_OrderID.Items.Clear();
+            txt_CardNumber.Text = "";
+            txt_Cash.Text = "";
+        }
+        private void btn_Reset_Click(object sender, EventArgs e)
+        {
+            clear();
+        }
+        
+        void show()
+        {
+            dgv_Payment.DataSource = ShowData("SELECT MsMenu.name, OrderDetail.qty, MsMenu.price FROM OrderDetail INNER JOIN MsMenu ON OrderDetail.menuid = MsMenu.id WHERE status = 'unpaid'");
+            data();
+            DataRowCollection col = GetData("SELECT orderid FROM OrderDetail WHERE status = 'unpaid'");
+            foreach (DataRow row in col)
             {
-                if (txb_cardNumber.Text != "" && cmb_bankName.Text != "Pilih Nama Bank")
-                {
-                    fun_update(@"UPDATE OrderHeader SET 
-                    paymentType='" + cmb_typePay.Text + "', bank='" + cmb_bankName.Text + "', cardNumber='" + txb_cardNumber.Text + "', total='" + label8.Text + "' WHERE id='" + cmb_orderId.Text + "' ");
-                    fun_query(@"UPDATE OrderDetail SET status='Paid' WHERE orderId='" + cmb_orderId.Text + "'");
-                    refresh();
-                }
-                else
-                {
-                    MessageBox.Show("Harap Isi Semua Kolom!!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                cbx_OrderID.Items.Add(row["orderid"]);
             }
-            else if (cmb_typePay.SelectedIndex == 0)
+        }
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
             {
-                if (txb_cash.Text != "")
-                {
-                    fun_update(@"UPDATE OrderHeader SET 
-                    paymentType='" + cmb_typePay.Text + "', bank='" + cmb_bankName.Text + "', cardNumber='" + txb_cardNumber.Text + "', total='" + label8.Text + "' WHERE id='" + cmb_orderId.Text + "' ");
-                    fun_query(@"UPDATE OrderDetail SET status='Paid' WHERE orderId='" + cmb_orderId.Text + "'");
-                    refresh();
-                }
-                else
-                {
-                    MessageBox.Show("Harap Isi Semua Kolom!!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                if (koneksi.State == ConnectionState.Closed) koneksi.Open();
+                SqlCommand command = new SqlCommand("UPDATE OrderHeader SET paymenttype = '" + cbx_PaymentType.Text + "', cardnumber = '" + txt_CardNumber.Text + "', bank = '" + cbx_Bank.Text + "' WHERE id = '" + cbx_OrderID.Text + "'", koneksi);
+                command.ExecuteNonQuery();
+                SqlCommand com = new SqlCommand("UPDATE OrderDetail SET status = 'Paid' WHERE orderid = '" + cbx_OrderID.Text + "'", koneksi);
+                com.ExecuteNonQuery();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Harap Pilih Metode Pembayaran!!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                koneksi.Close();
+            }
+            clear();
+            show();
         }
     }
 }

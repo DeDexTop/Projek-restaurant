@@ -69,7 +69,7 @@ namespace WindowsFormsApp7
             txtHandphone.Text = dgv_Employee.Rows[e.RowIndex].Cells[4].Value.ToString();
             cbxPosition.Text = dgv_Employee.Rows[e.RowIndex].Cells[5].Value.ToString();
 
-            txtID.Enabled = false;
+            txtID.Enabled = true;
         }
 
         private void BtnInsert_Click(object sender, EventArgs e)

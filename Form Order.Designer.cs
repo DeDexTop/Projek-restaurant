@@ -39,9 +39,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.dgv_Order = new System.Windows.Forms.DataGridView();
-            this.dgv_Menu = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.MenuPicture = new System.Windows.Forms.PictureBox();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,8 +48,12 @@
             this.column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_Menu = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.MenuPicture = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.cbxMember = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Order)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Menu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MenuPicture)).BeginInit();
@@ -179,39 +180,6 @@
             this.dgv_Order.Size = new System.Drawing.Size(947, 179);
             this.dgv_Order.TabIndex = 63;
             // 
-            // dgv_Menu
-            // 
-            this.dgv_Menu.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dgv_Menu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Menu.Location = new System.Drawing.Point(12, 113);
-            this.dgv_Menu.Name = "dgv_Menu";
-            this.dgv_Menu.RowHeadersWidth = 62;
-            this.dgv_Menu.RowTemplate.Height = 28;
-            this.dgv_Menu.Size = new System.Drawing.Size(947, 179);
-            this.dgv_Menu.TabIndex = 62;
-            this.dgv_Menu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Menu_CellClick);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(398, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 36);
-            this.label1.TabIndex = 61;
-            this.label1.Text = "Form Order";
-            // 
-            // MenuPicture
-            // 
-            this.MenuPicture.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.MenuPicture.Location = new System.Drawing.Point(99, 348);
-            this.MenuPicture.Name = "MenuPicture";
-            this.MenuPicture.Size = new System.Drawing.Size(201, 149);
-            this.MenuPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.MenuPicture.TabIndex = 78;
-            this.MenuPicture.TabStop = false;
-            // 
             // Column9
             // 
             this.Column9.HeaderText = "Menu ID";
@@ -266,6 +234,39 @@
             this.Column8.MinimumWidth = 8;
             this.Column8.Name = "Column8";
             // 
+            // dgv_Menu
+            // 
+            this.dgv_Menu.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dgv_Menu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Menu.Location = new System.Drawing.Point(12, 113);
+            this.dgv_Menu.Name = "dgv_Menu";
+            this.dgv_Menu.RowHeadersWidth = 62;
+            this.dgv_Menu.RowTemplate.Height = 28;
+            this.dgv_Menu.Size = new System.Drawing.Size(947, 179);
+            this.dgv_Menu.TabIndex = 62;
+            this.dgv_Menu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Menu_CellClick);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(398, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(166, 36);
+            this.label1.TabIndex = 61;
+            this.label1.Text = "Form Order";
+            // 
+            // MenuPicture
+            // 
+            this.MenuPicture.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.MenuPicture.Location = new System.Drawing.Point(99, 348);
+            this.MenuPicture.Name = "MenuPicture";
+            this.MenuPicture.Size = new System.Drawing.Size(201, 149);
+            this.MenuPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.MenuPicture.TabIndex = 78;
+            this.MenuPicture.TabStop = false;
+            // 
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -286,11 +287,22 @@
             this.cbxMember.Size = new System.Drawing.Size(215, 28);
             this.cbxMember.TabIndex = 80;
             // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(400, 421);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 20);
+            this.label4.TabIndex = 81;
+            this.label4.Text = "Member Name";
+            // 
             // Form_Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(971, 879);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.cbxMember);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.MenuPicture);
@@ -344,5 +356,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cbxMember;
+        private System.Windows.Forms.Label label4;
     }
 }
