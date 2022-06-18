@@ -101,6 +101,7 @@ namespace WindowsFormsApp7
         }
         void clear()
         {
+            dgv_Payment.Rows.Clear();
             labelNumb.Text = "Card Number";
             label5.Visible = true;
             cbx_Bank.Visible = true;
@@ -118,8 +119,15 @@ namespace WindowsFormsApp7
         
         void show()
         {
-            dgv_Payment.DataSource = ShowData("SELECT MsMenu.name, OrderDetail.qty, MsMenu.price FROM OrderDetail INNER JOIN MsMenu ON OrderDetail.menuid = MsMenu.id WHERE status = 'unpaid'");
-            data();
+            DataRowCollection dataMenu = GetData("SELECT MsMenu.name, OrderDetail.qty, MsMenu.price FROM OrderDetail INNER JOIN MsMenu ON OrderDetail.menuid = MsMenu.id WHERE status = 'unpaid'");
+            long total = 0;
+            for (int i = 0; i < dataMenu.Count; i++)
+            {
+                dgv_Payment.Rows.Add(dataMenu[i]["name"],dataMenu[i]["qty"],dataMenu[i]["price"], Convert.ToInt64(dataMenu[i]["qty"]) * Convert.ToInt64(dataMenu[i]["price"]));
+                total += Convert.ToInt64(dataMenu[i]["qty"]) * Convert.ToInt64(dataMenu[i]["price"]);
+            }
+            lableTotal.Text = "Total: " + total;
+
             DataRowCollection col = GetData("SELECT orderid FROM OrderDetail WHERE status = 'unpaid'");
             foreach (DataRow row in col)
             {

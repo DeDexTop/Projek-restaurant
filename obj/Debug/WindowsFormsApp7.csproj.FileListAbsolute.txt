@@ -20,3 +20,25 @@ D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_Login.resources
 D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_Order.resources
 D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_Payment.resources
 D:\Project VS\WindowsFormsApp7\obj\Debug\WindowsFormsApp7.Form_Report.resources
+C:\Users\Posei\source\repos\Projek-restaurant\bin\Debug\WindowsFormsApp7.exe.config
+C:\Users\Posei\source\repos\Projek-restaurant\bin\Debug\WindowsFormsApp7.exe
+C:\Users\Posei\source\repos\Projek-restaurant\bin\Debug\WindowsFormsApp7.pdb
+C:\Users\Posei\source\repos\Projek-restaurant\bin\Debug\System.Data.SqlClient.dll
+C:\Users\Posei\source\repos\Projek-restaurant\bin\Debug\System.Data.SqlClient.xml
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.csproj.AssemblyReference.cache
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.csproj.SuggestedBindingRedirects.cache
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.Form_Admin.resources
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.Form_Cashier.resources
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.Form_Login.resources
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.Form_ManageEmployee.resources
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.Form_ManageMember.resources
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.Form_ManageMenu.resources
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.Form_Order.resources
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.Form_Payment.resources
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.Form_Report.resources
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.Properties.Resources.resources
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.csproj.GenerateResource.cache
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.csproj.CoreCompileInputs.cache
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.csproj.CopyComplete
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.exe
+C:\Users\Posei\source\repos\Projek-restaurant\obj\Debug\WindowsFormsApp7.pdb
