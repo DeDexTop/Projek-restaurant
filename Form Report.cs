@@ -91,18 +91,25 @@ namespace WindowsFormsApp7
 
             var items2 = new BindingList<KeyValuePair<string, string>>();
 
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/01/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Januari"));
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/02/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Februari"));
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/03/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Maret"));
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/04/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "April"));
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/05/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Mei"));
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/06/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Juni"));
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/07/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Juli"));
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/08/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Agustus"));
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/09/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "September"));
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/10/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Oktober"));
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/11/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "November"));
-            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/12/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "December"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/01/31", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Januari"));
+            if(IsLeapYear())
+            {
+                items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/02/29", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Februari"));
+            }
+            else
+            {
+                items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/02/29", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Februari"));
+            }
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/03/31", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Maret"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/04/30", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "April"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/05/31", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Mei"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/06/30", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Juni"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/07/31", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Juli"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/08/30", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Agustus"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/09/31", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "September"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/10/30", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "Oktober"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/11/31", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "November"));
+            items2.Add(new KeyValuePair<string, string>(DateTime.ParseExact("2022/12/30", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy-MM-dd"), "December"));
 
             comboBox1.DataSource = items;
             comboBox1.ValueMember = "Key";
