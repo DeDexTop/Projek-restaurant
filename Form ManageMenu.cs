@@ -32,12 +32,12 @@ namespace WindowsFormsApp7
         }
         void data()
         {
-            dgv_Menu.Columns[0].HeaderText = "MenuId";
+            dgv_Menu.Columns[0].HeaderText = "Menu ID";
             dgv_Menu.Columns[1].HeaderText = "Name";
             dgv_Menu.Columns[2].HeaderText = "Price";
             dgv_Menu.Columns[3].HeaderText = "Photo";
-            dgv_Menu.Columns[4].HeaderText = "carbo";
-            dgv_Menu.Columns[5].HeaderText = "protein";
+            dgv_Menu.Columns[4].HeaderText = "Carbo";
+            dgv_Menu.Columns[5].HeaderText = "Protein";
         }
         void show()
         {
@@ -79,7 +79,7 @@ namespace WindowsFormsApp7
             string dir = Path.GetDirectoryName(Application.ExecutablePath);
             Image image = Image.FromFile(dir + "\\assets\\" + txtPhoto.Text);
             MenuPicture.Image = image;
-
+            
             label8.Text = "Jika ingin mengupdate data, pilih ulang gambar";
         }
 
@@ -157,7 +157,8 @@ namespace WindowsFormsApp7
                 {
                     koneksi.Open();
 
-                    SqlCommand com = new SqlCommand("UPDATE MsMenu SET name = '" + txtName.Text + "', price = '" + txtPrice.Text + "', photo = '" + txtPhoto.Text + "', carbo = '" + txtCarbo.Text + "', protein = '" + txtProtein.Text + "', image = @Pic WHERE id = '" + txtMenuId.Text + "'", koneksi);
+                    SqlCommand com = new SqlCommand("UPDATE MsMenu SET name = '" + txtName.Text + "', price = '" + txtPrice.Text + "', photo = '" + txtPhoto.Text + "', carbo = '" + txtCarbo.Text + "', protein = '" + txtProtein.Text + "' WHERE id = '" + txtMenuId.Text + "'", koneksi);
+                 
                     com.ExecuteNonQuery();
                     MessageBox.Show("DataBerhasil Diubah", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -239,18 +239,20 @@ namespace WindowsFormsApp7
                 com.Parameters.AddWithValue("@bank", "");
                 com.ExecuteNonQuery();
                 //foreach (DataGridViewRow row in dgv_Order.Rows)
-                for (int i = 0; i < dgv_Order.Rows.Count; i++)
+                for (int i = 0; i < dgv_Order.Rows.Count-1; i++)
                 {
+                    Console.WriteLine(dgv_Order.Rows.Count);
                     if (koneksi.State == ConnectionState.Closed) koneksi.Open();
                     command = new SqlCommand(@"INSERT INTO OrderDetail([orderid],[menuid],[qty],[status]) VALUES
                     (@order,@menuName ,@qty, 'unpaid')", koneksi);
                     command.Parameters.AddWithValue("@order", id);
-                    command.Parameters.AddWithValue("@menuName", dgv_Order.Rows[0].Cells[0].Value);
-                    command.Parameters.AddWithValue("@qty", dgv_Order.Rows[0].Cells[2].Value);
+                    command.Parameters.AddWithValue("@menuName", dgv_Order.Rows[i].Cells[0].Value);
+                    command.Parameters.AddWithValue("@qty", dgv_Order.Rows[i].Cells[2].Value);
                     command.ExecuteNonQuery();
-                    dgv_Order.Rows.RemoveAt(dgv_Order.Rows[0].Index);
+                    
                     clear();
                 }
+                dgv_Order.Rows.Clear();
                 label();
             }
             catch (Exception ex)

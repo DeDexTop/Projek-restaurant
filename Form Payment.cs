@@ -30,24 +30,6 @@ namespace WindowsFormsApp7
             new Form_Cashier().Show();
             this.Hide();
         }
-        string Total()
-        {
-            qty = Convert.ToInt32(dgv_Payment.Rows[1].Cells[1].Value);
-            price = Convert.ToInt32(dgv_Payment.Rows[2].Cells[2].Value);
-            hasil = qty * price;
-            total = hasil.ToString();
-            return total;
-        }
-
-        public object ShowData(string query)
-        {
-            SqlDataAdapter adapter = new SqlDataAdapter(query, url);
-            DataSet data = new DataSet();
-
-            adapter.Fill(data);
-            object bebas = data.Tables[0];
-            return bebas;
-        }
 
         private void cbx_PaymentType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -128,10 +110,10 @@ namespace WindowsFormsApp7
             }
             lableTotal.Text = "Total: " + total;
 
-            DataRowCollection col = GetData("SELECT orderid FROM OrderDetail WHERE status = 'unpaid'");
+            DataRowCollection col = GetData("SELECT DISTINCT OrderHeader.id FROM OrderDetail INNER JOIN OrderHeader ON OrderDetail.orderid = OrderHeader.id WHERE status = 'unpaid'");
             foreach (DataRow row in col)
             {
-                cbx_OrderID.Items.Add(row["orderid"]);
+                cbx_OrderID.Items.Add(row["id"]);
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
